@@ -22,7 +22,7 @@ public class Movie implements Parcelable {
     /**
      * Overview of the movie
      */
-    private String mOverview;
+    private String Overview;
 
     /**
      * Movie rating
@@ -34,12 +34,12 @@ public class Movie implements Parcelable {
      */
     private String releaseDate;
 
-    public Movie(String PosterUrl, String OriginalTitle, String Overview, Double VoteAverage, String ReleaseDate) {
-        posterUrl = PosterUrl;
-        originalTitle = OriginalTitle;
-        mOverview = Overview;
-        voteAverage = VoteAverage;
-        releaseDate = ReleaseDate;
+    public Movie(String posterUrl, String originalTitle, String Overview, Double voteAverage, String releaseDate) {
+        this.posterUrl = posterUrl;
+        this.originalTitle = originalTitle;
+        this.Overview = Overview;
+        this.voteAverage = voteAverage;
+        this.releaseDate = releaseDate;
     }
 
     public String getPosterUrl() {
@@ -55,7 +55,7 @@ public class Movie implements Parcelable {
     }
 
     public String getOverview() {
-        return mOverview;
+        return Overview;
     }
 
     public double getVoteAverage() {
@@ -69,7 +69,7 @@ public class Movie implements Parcelable {
     protected Movie(Parcel in) {
         posterUrl = in.readString();
         originalTitle = in.readString();
-        mOverview = in.readString();
+        Overview = in.readString();
         voteAverage = in.readDouble();
         releaseDate = in.readString();
     }
@@ -79,11 +79,12 @@ public class Movie implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(posterUrl);
         dest.writeString(originalTitle);
-        dest.writeString(mOverview);
+        dest.writeString(Overview);
         dest.writeDouble(voteAverage);
         dest.writeString(releaseDate);
     }
@@ -100,6 +101,4 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
-
-
 }
