@@ -1,15 +1,13 @@
 package com.example.android.popularmovies1;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Maino96-10022 on 6/3/2017.
  */
 
-public class Movie {
-
-    /**
-     * Base URL for the image
-     */
-    private static final String BASE_URL = "http://image.tmdb.org/t/p/w185";
+public class Movie implements Parcelable {
 
     /**
      * Image URL
@@ -45,7 +43,7 @@ public class Movie {
     }
 
     public String getPosterUrl() {
-        return BASE_URL + posterUrl;
+        return posterUrl;
     }
 
     public String getOriginalTitle() {
@@ -67,4 +65,41 @@ public class Movie {
     public String getReleaseDate() {
         return releaseDate;
     }
+
+    protected Movie(Parcel in) {
+        posterUrl = in.readString();
+        originalTitle = in.readString();
+        mOverview = in.readString();
+        voteAverage = in.readDouble();
+        releaseDate = in.readString();
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(posterUrl);
+        dest.writeString(originalTitle);
+        dest.writeString(mOverview);
+        dest.writeDouble(voteAverage);
+        dest.writeString(releaseDate);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
+
+
 }
