@@ -15,23 +15,33 @@ import java.util.List;
  * Created by Maino96-10022 on 6/3/2017.
  */
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private ArrayList<Movie> moviesList;
 
     public MovieAdapter(ArrayList<Movie> moviesList) {
+
         this.moviesList = moviesList;
     }
 
-    public class MovieAdapterViewHolder extends RecyclerView.ViewHolder {
+    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+        public ImageView imageView;
+
+            public MovieViewHolder(View view) {
+                super(view);
+                imageView= (ImageView) view.findViewById(R.id.imageView);
+            }
+    }
+    @Override
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.movie_list_item, parent, false);
+
+        return new MovieViewHolder(itemView);
 
     }
     @Override
-    public MovieAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-
-    }
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MovieViewHolder holder, int position) {
 
 
 
