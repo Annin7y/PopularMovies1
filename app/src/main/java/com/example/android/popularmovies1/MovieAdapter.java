@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static java.lang.System.load;
 
 /**
  * Created by Maino96-10022 on 6/3/2017.
@@ -18,6 +20,7 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private ArrayList<Movie> moviesList;
+    private Context context;
 
     public MovieAdapter(ArrayList<Movie> moviesList) {
 
@@ -42,8 +45,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
+        Movie movie = moviesList.get(position);
+
+      //  String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
 
 
+     Picasso.with(context)
+         .load("http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg")
+         .into(holder.imageView);
+
+    }
 
     @Override
     public int getItemCount() {
