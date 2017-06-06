@@ -51,7 +51,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
 
      Picasso.with(context)
-         .load("http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg")
+         .load(movie.getPosterUrl())
          .into(holder.imageView);
 
     }

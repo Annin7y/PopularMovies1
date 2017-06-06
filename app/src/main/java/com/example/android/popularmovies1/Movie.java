@@ -14,7 +14,10 @@ public class Movie implements Parcelable {
      */
     private String posterUrl;
 
-    private static final String BASE_URL = "http://image.tmdb.org/t/p/w185";
+    /**
+     * Base URL for the poster
+     */
+    private String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
 
     /**
      * Title of the movie
@@ -45,28 +48,45 @@ public class Movie implements Parcelable {
     }
 
     public String getPosterUrl() {
-        return posterUrl;
+        return BASE_URL + posterUrl;
+    }
+
+    public void setPosterUrl(String poster) {
+        this.posterUrl = poster;
     }
 
     public String getOriginalTitle() {
         return originalTitle;
     }
 
-    public String getDate() {
-        return releaseDate;
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
     }
 
     public String getOverview() {
         return Overview;
     }
 
+    public void setOverview(String Overview) {
+        this.Overview = Overview;
+    }
+
     public double getVoteAverage() {
         return voteAverage;
+    }
+
+    public void setVoteAverage(Double voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
     public String getReleaseDate() {
         return releaseDate;
     }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
 
     protected Movie(Parcel in) {
         posterUrl = in.readString();
