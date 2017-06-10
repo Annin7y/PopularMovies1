@@ -17,7 +17,7 @@ public class Movie implements Parcelable {
     /**
      * Base URL for the poster
      */
-    private String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
+    private String BASE_URL = "http://image.tmdb.org/t/p/w185/";
 
     /**
      * Title of the movie
