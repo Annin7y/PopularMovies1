@@ -5,4 +5,5 @@ package com.example.android.popularmovies1.AsyncTask;
  */
 
 public interface AsyncTaskInterface {
+    void AsyncTaskInterface();
 }
