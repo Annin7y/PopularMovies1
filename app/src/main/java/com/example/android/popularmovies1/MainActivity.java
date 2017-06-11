@@ -11,18 +11,19 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.android.popularmovies1.AsyncTask.AsyncTaskInterface;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
+public class MainActivity extends AppCompatActivity implements AsyncTaskInterface {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     /**
      * Base URL for the image
      */
-    private static final String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
+   // private static final String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
 
     private ArrayList<Movie> movieList = new ArrayList<>();
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
     }
 
     @Override
-    public void onTaskCompleted(String result) {
+    public void AsyncTaskInterface (String result) {
         // Start the next Activity
     }
 

@@ -4,5 +4,8 @@ package com.example.android.popularmovies1.AsyncTask;
  * Created by Maino96-10022 on 6/10/2017.
  */
 
-public interface AsyncTaskInterface {
+public interface AsyncTaskInterface  {
+    void Async(String result);
 }
+
+

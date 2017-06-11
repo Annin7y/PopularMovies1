@@ -47,10 +47,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie movie = moviesList.get(position);
-
-      //  String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
-
-
+        
      Picasso.with(context)
          .load(movie.getPosterUrl())
          .into(holder.imageView);
