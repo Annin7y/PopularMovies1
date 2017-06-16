@@ -1,5 +1,7 @@
 package com.example.android.popularmovies1;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -63,6 +66,20 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskInterfac
     public void AsyncTaskInterface (String result) {
         // Start the next Activity
     }
+
+    @Override
+    public void onClick(View v) {
+        Context context = this;
+        Class destinationClass = DetailActivity.class;
+        Intent intentToStartDetailActivity = new Intent(context, destinationClass);
+        startActivity(intent);
+    }
+});
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

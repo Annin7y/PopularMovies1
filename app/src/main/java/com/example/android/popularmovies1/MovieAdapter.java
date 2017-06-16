@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,22 +20,44 @@ import static java.lang.System.load;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-
+//http://api.themoviedb.org/3/movie/
     private ArrayList<Movie> moviesList;
     private Context context;
+    private MovieAdapterOnClickHandler mClickHandler;
 
     public MovieAdapter(ArrayList<Movie> moviesList) {
 
         this.moviesList = moviesList;
     }
 
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+    public interface MovieAdapterOnClickHandler {
+        void onClick(Movie posterClick);
+    }
+
+    public MovieAdapter(MovieAdapterOnClickHandler clickHandler) {
+        mClickHandler = clickHandler;
+    }
+
+
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+
         public ImageView imageView;
 
             public MovieViewHolder(View view) {
                 super(view);
                 imageView= (ImageView) view.findViewById(R.id.imageView);
+                view.setOnClickListener(this);
             }
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            Movie posterClick= moviesList[adapterPosition];
+            mClickHandler.onClick(posterClick);
+        }
+    }
+
+
     }
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -47,7 +70,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie movie = moviesList.get(position);
-        
+
      Picasso.with(context)
          .load(movie.getPosterUrl())
          .into(holder.imageView);
@@ -60,11 +83,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return moviesList.size();
     }
 
-    public void setMovieList(List<Movie> mMovieList) {
-        this.moviesList = new ArrayList<>();
-        this.moviesList.addAll(mMovieList);
-        notifyDataSetChanged();
-    }
+//    public void setMovieList(List<Movie> mMovieList) {
+//        this.moviesList = new ArrayList<>();
+//        this.moviesList.addAll(mMovieList);
+//        notifyDataSetChanged();
+//    }
 
 }
 
