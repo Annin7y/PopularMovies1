@@ -9,42 +9,39 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-
-import static java.lang.System.load;
 
 /**
  * Created by Maino96-10022 on 6/3/2017.
  */
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 //http://api.themoviedb.org/3/movie/
-    private ArrayList<Movie> moviesList;
+    private ArrayList<Movie> moviesList = new ArrayList<Movie>();
     private Context context;
     private MovieAdapterOnClickHandler mClickHandler;
 
-    public MovieAdapter(ArrayList<Movie> moviesList) {
+ //  public MovieAdapter(List<Movie> moviesList) {
 
-        this.moviesList = moviesList;
-    }
+    //    this.moviesList = moviesList;
+ //   }
 
     public interface MovieAdapterOnClickHandler {
         void onClick(Movie posterClick);
     }
 
-    public MovieAdapter(MovieAdapterOnClickHandler clickHandler) {
+    public MovieAdapter(MovieAdapterOnClickHandler clickHandler,ArrayList<Movie>moviesList,Context context) {
+       this.moviesList = moviesList;
+       this.context = context;
         mClickHandler = clickHandler;
     }
 
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+    public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView imageView;
 
-            public MovieViewHolder(View view) {
+            public MovieAdapterViewHolder(View view) {
                 super(view);
                 imageView= (ImageView) view.findViewById(R.id.imageView);
                 view.setOnClickListener(this);
@@ -52,23 +49,24 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            Movie posterClick= moviesList[adapterPosition];
+            Movie posterClick= moviesList.get(adapterPosition);
             mClickHandler.onClick(posterClick);
         }
     }
 
-
-    }
     @Override
-    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.movie_list_item, parent, false);
+    public MovieAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        Context context = viewGroup.getContext();
+        int layoutIdForListItem = R.layout.movie_list_item;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        boolean shouldAttachToParentImmediately = false;
 
-        return new MovieViewHolder(itemView);
-
+        View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
+        return new MovieAdapterViewHolder(view);
     }
+
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
+    public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
         Movie movie = moviesList.get(position);
 
      Picasso.with(context)

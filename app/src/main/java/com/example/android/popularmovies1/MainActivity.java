@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskInterfac
      */
    // private static final String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
 
-    private ArrayList<Movie> movieList = new ArrayList<>();
+    private ArrayList<Movie> moviesList = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskInterfac
         setContentView(R.layout.activity_main);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
-        mMovieAdapter = new MovieAdapter(movieList);
+        mMovieAdapter = new MovieAdapter(this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mMovieAdapter);
