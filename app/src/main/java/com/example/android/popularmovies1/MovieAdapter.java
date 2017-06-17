@@ -16,23 +16,18 @@ import java.util.ArrayList;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
-//http://api.themoviedb.org/3/movie/
+    //http://api.themoviedb.org/3/movie/
     private ArrayList<Movie> moviesList = new ArrayList<Movie>();
     private Context context;
     private MovieAdapterOnClickHandler mClickHandler;
-
- //  public MovieAdapter(List<Movie> moviesList) {
-
-    //    this.moviesList = moviesList;
- //   }
 
     public interface MovieAdapterOnClickHandler {
         void onClick(Movie posterClick);
     }
 
-    public MovieAdapter(MovieAdapterOnClickHandler clickHandler,ArrayList<Movie>moviesList,Context context) {
-       this.moviesList = moviesList;
-       this.context = context;
+    public MovieAdapter(MovieAdapterOnClickHandler clickHandler, ArrayList<Movie> moviesList, Context context) {
+        this.moviesList = moviesList;
+        this.context = context;
         mClickHandler = clickHandler;
     }
 
@@ -41,15 +36,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         public ImageView imageView;
 
-            public MovieAdapterViewHolder(View view) {
-                super(view);
-                imageView= (ImageView) view.findViewById(R.id.imageView);
-                view.setOnClickListener(this);
-            }
+        public MovieAdapterViewHolder(View view) {
+            super(view);
+
+            imageView = (ImageView) view.findViewById(R.id.imageView);
+            view.setOnClickListener(this);
+        }
+
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            Movie posterClick= moviesList.get(adapterPosition);
+            Movie posterClick = moviesList.get(adapterPosition);
             mClickHandler.onClick(posterClick);
         }
     }
@@ -67,11 +64,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     @Override
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
-        Movie movie = moviesList.get(position);
-
-     Picasso.with(context)
-         .load(movie.getPosterUrl())
-         .into(holder.imageView);
+        //Binding data
+        final Movie movieView = moviesList.get(position);
+        
+        Picasso.with(context)
+                .load(movieView.getPosterUrl())
+                .resize(50, 50)
+                .centerCrop()
+                .into(holder.imageView);
 
     }
 
