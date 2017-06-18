@@ -66,10 +66,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
         //Binding data
         final Movie movieView = moviesList.get(position);
-        
+
         Picasso.with(context)
                 .load(movieView.getPosterUrl())
-                .resize(50, 50)
+                .resize(185, 50)
                 .centerCrop()
                 .into(holder.imageView);
 
