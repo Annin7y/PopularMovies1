@@ -29,9 +29,6 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
         this.listener=listener;
     }
 
-    HttpURLConnection conn;
-    URL url = null;
-
 
     @Override
     protected void onPreExecute() {
@@ -69,6 +66,11 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
 
     }
 
+        @Override
+        protected void onPostExecute(List<Movie>) {
+
+            listener.returnData(List<Movie> moviesList);
+        }
 
 
 }

@@ -96,7 +96,6 @@ public class Movie implements Parcelable {
         releaseDate = in.readString();
     }
 
-
     @Override
     public int describeContents() {
         return 0;

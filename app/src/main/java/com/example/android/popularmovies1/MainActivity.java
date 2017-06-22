@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -15,11 +16,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.popularmovies1.AsyncTask.AsyncTaskInterface;
+import com.example.android.popularmovies1.AsyncTask.MovieAsyncTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AsyncTaskInterface {
+public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler, AsyncTaskInterface {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
    // private static final String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
 
     private ArrayList<Movie> moviesList = new ArrayList<>();
+
+    private Context context;
 
     private RecyclerView mRecyclerView;
 
@@ -40,19 +45,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ProgressBar mLoadingIndicator;
 
+    private static final String SORT_BY_POPULAR = "popular";
+    private static final String SORT_BY_RATING = "rating";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MovieAsyncTask asyncTask = new MovieAsyncTask(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
-        mMovieAdapter = new MovieAdapter(this);
+        mMovieAdapter = new MovieAdapter(this,moviesList,context);
+        mRecyclerView.setAdapter(mMovieAdapter);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mMovieAdapter);
         mErrorMessageDisplay = (TextView) findViewById(R.id.movie_error_message_display);
 
+    }
+    @Override
+    public void returnData(List<Movie> moviesList) {
+        for(Movie movie: moviesList) {
+            Log.i("TITLE: ", movie.getOriginalTitle());
+        }
     }
 
     private void showErrorMessage() {
@@ -61,24 +76,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /* Then, show the error */
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
-
     @Override
-    public void AsyncTaskInterface (String result) {
-        // Start the next Activity
-    }
-
-    @Override
-    public void onClick(View v) {
+    public void onClick(Movie movie) {
         Context context = this;
         Class destinationClass = DetailActivity.class;
         Intent intentToStartDetailActivity = new Intent(context, destinationClass);
-        startActivity(intent);
+        intentToStartDetailActivity.putExtra(Intent.EXTRA_TEXT, movie);
+        startActivity(intentToStartDetailActivity);
     }
 });
-
-
-
-
 
 
     @Override
@@ -91,5 +97,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 }
 
+        }
