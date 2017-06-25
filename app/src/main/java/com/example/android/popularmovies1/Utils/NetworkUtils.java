@@ -45,10 +45,10 @@ public class NetworkUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Book}s
+        // Extract relevant fields from the JSON response and create a list of {@link Movie}s
         List<Movie> moviesList = extractFeatureFromJson(jsonResponse);
 
-        // Return the list of {@link Book}s
+        // Return the list of {@link Movie}s
         return moviesList;
     }
 
@@ -146,20 +146,22 @@ public class NetworkUtils {
 // For each earthquake in the earthquakeArray, create an {@link Movie} object
             for (int i = 0; i < movieArray.length(); i++) {
 
-                // Get a single movie description at position i within the list of movie
+                // Get a single movie description at position i within the list of movies
                 JSONObject currentMovie = movieArray.getJSONObject(i);
 
-                String posterUrl = currentMovie.getString("poster_path");
+                String posterName = currentMovie.getString("poster_path");
 
-                // Extract the value for the key called "title"
-                String movieTitle = currentMovie.getString("original_title");
+                // Extract the value for the key called "original_title"
+                String movieName= currentMovie.getString("original_title");
 
-                // Extract the value for the key called "authors"
-                String authorName = currentMovie.getString("authors");
+                String overviewName = currentMovie.getString("authors");
 
-                Movie book = new Movie(posterUrl,movieTitle, authorName);
-                movies.add(book);
+                Double voteName = currentMovie.getDouble("vote_average");
 
+                String releaseName = currentMovie.getString("release_date");
+
+                Movie movie= new Movie(posterName,movieName, overviewName,voteName,releaseName);
+                movies.add(movie);
 
             }
 
