@@ -30,6 +30,17 @@ public class NetworkUtils {
      */
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
+    private static final String KEY_POSTER_PATH = "poster_path";
+
+    private static final String KEY_ORIGINAL_TITLE = "original_title";
+
+    private static final String KEY_OVERVIEW = "overview";
+
+    private static final String KEY_VOTE_AVERAGE = "vote_average";
+
+    private static final String KEY_RELEASE_DATE = "release_date";
+
+
     public NetworkUtils() {
     }
 
@@ -149,16 +160,16 @@ public class NetworkUtils {
                 // Get a single movie description at position i within the list of movies
                 JSONObject currentMovie = movieArray.getJSONObject(i);
 
-                String posterName = currentMovie.getString("poster_path");
+                String posterName = currentMovie.getString(KEY_POSTER_PATH);
 
                 // Extract the value for the key called "original_title"
-                String movieName= currentMovie.getString("original_title");
+                String movieName= currentMovie.getString(KEY_ORIGINAL_TITLE);
 
-                String overviewName = currentMovie.getString("authors");
+                String overviewName = currentMovie.getString(KEY_OVERVIEW);
 
-                Double voteName = currentMovie.getDouble("vote_average");
+                Double voteName = currentMovie.getDouble(KEY_VOTE_AVERAGE);
 
-                String releaseName = currentMovie.getString("release_date");
+                String releaseName = currentMovie.getString(KEY_RELEASE_DATE);
 
                 Movie movie= new Movie(posterName,movieName, overviewName,voteName,releaseName);
                 movies.add(movie);
