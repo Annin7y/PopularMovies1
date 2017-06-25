@@ -95,7 +95,7 @@ public class NetworkUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the book JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving movie JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -133,7 +133,7 @@ public class NetworkUtils {
         if (TextUtils.isEmpty(movieJSON)) {
             return null;
         }
-        List<Movie> moviesList = new ArrayList<>();
+        List<Movie> movies = new ArrayList<>();
         try {
 
             // Create a JSONObject from the JSON response string
@@ -146,22 +146,19 @@ public class NetworkUtils {
 // For each earthquake in the earthquakeArray, create an {@link Movie} object
             for (int i = 0; i < movieArray.length(); i++) {
 
-                // Get a single book at position i within the list of books
+                // Get a single movie description at position i within the list of movie
                 JSONObject currentMovie = movieArray.getJSONObject(i);
-                JSONObject volumeInfo = currentMovie.getJSONObject("volumeInfo");
 
-                // For a given book, extract the JSONObject associated with the
-                // key called "items", which represents a list of all items
-                // for that book.
+                String posterUrl = currentMovie.getString("poster_path");
 
                 // Extract the value for the key called "title"
-                String bookTitle = volumeInfo.getString("title");
+                String movieTitle = currentMovie.getString("original_title");
 
                 // Extract the value for the key called "authors"
-                String authorName = volumeInfo.getString("authors");
+                String authorName = currentMovie.getString("authors");
 
-                Book book = new Book(bookTitle, authorName);
-                books.add(book);
+                Movie book = new Movie(posterUrl,movieTitle, authorName);
+                movies.add(book);
 
 
             }
@@ -170,11 +167,11 @@ public class NetworkUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the book JSON results", e);
+            Log.e("QueryUtils", "Problem parsing movies JSON results", e);
         }
 
-        // Return the list of books
-        return moviesList;
+        // Return the list of movies
+        return movies;
     }
 }
 
