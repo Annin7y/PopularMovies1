@@ -6,6 +6,7 @@ import android.widget.ProgressBar;
 
 import com.example.android.popularmovies1.MainActivity;
 import com.example.android.popularmovies1.Movie;
+import com.example.android.popularmovies1.Utils.NetworkUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,15 +40,16 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
 
     @Override
     protected List<Movie> doInBackground(String... params) {
-        List<Movie> result = new ArrayList<Movie>();
 
         if (params.length == 0) {
             return null;
         }
-        try {
-            URL url = null;
+        String location = params[0];
+        URL movieRequestUrl = NetworkUtils.createUrl(location);
 
-        }
+        try {
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,14 +59,6 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
 
         try{
 
-        JSONObject baseJsonResponse = new JSONObject(movieJSON);
-        JSONArray movieArray = baseJsonResponse.getJSONArray("items");
-
-        for (int i = 0; i < movieArray.length(); i++) {
-
-
-
-    }
 
         @Override
         protected void onPostExecute(List<Movie>) {

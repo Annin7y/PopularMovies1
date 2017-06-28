@@ -22,12 +22,20 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        posterImage = (ImageView) findViewById(R.id.imageView);
         title = (TextView) findViewById(R.id.original_title);
         overview = (TextView) findViewById(R.id.overview);
         vote = (TextView) findViewById(R.id.vote_average);
         date = (TextView) findViewById(R.id.release_date);
 
-        Intent intentThatStartedThisActivity = getIntent();
+        Intent intent = getIntent();
+        Movie movie= intent.getParcelableExtra("Movie");
+
+        String posterImage = movie.getPosterUrl();
+        String title = movie.getOriginalTitle();
+        String overview = movie.getOverview();
+        Double vote = movie.getVoteAverage();
+        
 
     }
 }

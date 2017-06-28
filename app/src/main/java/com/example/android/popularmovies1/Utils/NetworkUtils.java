@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.android.popularmovies1.Movie;
+import com.example.android.popularmovies1.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,13 +41,20 @@ public class NetworkUtils {
 
     private static final String KEY_RELEASE_DATE = "release_date";
 
+    static final String BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular";
+
+    static final String BASE_URL_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated";
+
+    static final String API_KEY = "api_key";
+
 
     public NetworkUtils() {
     }
 
     private static List<Movie> fetchMoviesData(String requestUrl) {
         // Create URL object
-        URL url = createUrl(requestUrl);
+     //   URL url = createUrl(requestUrl);
+        URL url = buildUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
@@ -67,15 +75,28 @@ public class NetworkUtils {
     /**
      * Returns new URL object from the given string URL.
      */
-    private static URL createUrl(String stringUrl) {
+  //  public static URL createUrl(String stringUrl) {
+   //     URL url = null;
+   //     try {
+    //        url = new URL(stringUrl);
+    //    } catch (MalformedURLException e) {
+   //         return null;
+   //     }
+   //     return url;
+  //  }
+
+    public static URL buildUrl(String sortMode) {
         URL url = null;
-        try {
-            url = new URL(stringUrl);
-        } catch (MalformedURLException e) {
-            return null;
+
+        if (sortMode == "popular") {
+            // return Url for "popular" endpoint
+            BASE_URL_POPULAR + API_KEY;
+        } else {
+            // return Url for "top-rated" endpoint
+            BASE_URL_TOP_RATED= http://api.themoviedb.org/3/movie/top_rated
         }
-        return url;
     }
+
 
     /**
      * Make an HTTP request to the given URL and return a String as the response.
