@@ -1,8 +1,10 @@
 package com.example.android.popularmovies1.Utils;
 
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.example.android.popularmovies1.BuildConfig;
 import com.example.android.popularmovies1.Movie;
 import com.example.android.popularmovies1.R;
 
@@ -41,11 +43,17 @@ public class NetworkUtils {
 
     private static final String KEY_RELEASE_DATE = "release_date";
 
-    static final String BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular";
+    private static final String SORT_BY_POPULAR = "popular";
 
-    static final String BASE_URL_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated";
+    private static final String SORT_BY_RATING = "rating";
 
-    static final String API_KEY = "api_key";
+    private static final String API_KEY = "api_key";
+
+    final static String QUERY_PARAM = "q";
+
+    private static final String BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular";
+
+    private static final String BASE_URL_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated";
 
 
     public NetworkUtils() {
@@ -53,7 +61,7 @@ public class NetworkUtils {
 
     private static List<Movie> fetchMoviesData(String requestUrl) {
         // Create URL object
-     //   URL url = createUrl(requestUrl);
+        //   URL url = createUrl(requestUrl);
         URL url = buildUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
@@ -75,33 +83,44 @@ public class NetworkUtils {
     /**
      * Returns new URL object from the given string URL.
      */
-  //  public static URL createUrl(String stringUrl) {
-   //     URL url = null;
-   //     try {
+    //  public static URL createUrl(String stringUrl) {
+    //     URL url = null;
+    //     try {
     //        url = new URL(stringUrl);
     //    } catch (MalformedURLException e) {
-   //         return null;
-   //     }
-   //     return url;
-  //  }
-
+    //         return null;
+    //     }
+    //     return url;
+    //  }
     public static URL buildUrl(String sortMode) {
         URL url = null;
+        try {
+            if (sortMode.equals(SORT_BY_POPULAR)) {
+                Uri builtUri = Uri.parse(BASE_URL_POPULAR).buildUpon()
+                        .appendQueryParameter(QUERY_PARAM, sortMode)
+                        .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIES_API_KEY)
+                        .build();
+                url = new URL(builtUri.toString());
+            } else if (sortMode.equals(SORT_BY_RATING)) {
+                Uri builtUri = Uri.parse(BASE_URL_TOP_RATED).buildUpon()
+                        .appendQueryParameter(QUERY_PARAM, sortMode)
+                        .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIES_API_KEY)
+                        .build();
+                url = new URL(builtUri.toString());
+            }
 
-        if (sortMode == "popular") {
-            // return Url for "popular" endpoint
-            BASE_URL_POPULAR + API_KEY;
-        } else {
-            // return Url for "top-rated" endpoint
-            BASE_URL_TOP_RATED= http://api.themoviedb.org/3/movie/top_rated
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
+        return url;
     }
 
 
     /**
      * Make an HTTP request to the given URL and return a String as the response.
      */
-    private static String makeHttpRequest(URL url) throws IOException {
+
+    public static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
         // If the URL is null, then return early.
@@ -184,7 +203,7 @@ public class NetworkUtils {
                 String posterName = currentMovie.getString(KEY_POSTER_PATH);
 
                 // Extract the value for the key called "original_title"
-                String movieName= currentMovie.getString(KEY_ORIGINAL_TITLE);
+                String movieName = currentMovie.getString(KEY_ORIGINAL_TITLE);
 
                 String overviewName = currentMovie.getString(KEY_OVERVIEW);
 
@@ -192,7 +211,7 @@ public class NetworkUtils {
 
                 String releaseName = currentMovie.getString(KEY_RELEASE_DATE);
 
-                Movie movie= new Movie(posterName,movieName, overviewName,voteName,releaseName);
+                Movie movie = new Movie(posterName, movieName, overviewName, voteName, releaseName);
                 movies.add(movie);
 
             }

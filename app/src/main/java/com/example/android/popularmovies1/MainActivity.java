@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     /**
      * Base URL for the image
      */
-   // private static final String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
+    // private static final String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
 
     private ArrayList<Movie> moviesList = new ArrayList<>();
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private RecyclerView mRecyclerView;
 
-    private MovieAdapter mMovieAdapter;
+    public MovieAdapter mMovieAdapter;
 
     RecyclerView.LayoutManager mLayoutManager;
 
@@ -56,16 +57,17 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
         MovieAsyncTask asyncTask = new MovieAsyncTask(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
-        mMovieAdapter = new MovieAdapter(this,moviesList,context);
+        mMovieAdapter = new MovieAdapter(this, moviesList, context);
         mRecyclerView.setAdapter(mMovieAdapter);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mErrorMessageDisplay = (TextView) findViewById(R.id.movie_error_message_display);
 
     }
+
     @Override
     public void returnData(List<Movie> moviesList) {
-        for(Movie movie: moviesList) {
+        for (Movie movie : moviesList) {
             Log.i("TITLE: ", movie.getOriginalTitle());
         }
     }
@@ -76,12 +78,13 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         /* Then, show the error */
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
+
     @Override
     public void onClick(Movie movie) {
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
         intent.putExtra("Movie", movie);
         startActivity(intent);
-});
+    }
 
 
     @Override
@@ -95,9 +98,21 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
 
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-}
 
+        if (id == R.id.most_popular) {
+            mMovieAdapter.setMovieList(null);
+            return true;
         }
+
+        if (id == R.id.top_rated) {
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+
+    }
+}

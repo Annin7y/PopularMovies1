@@ -10,13 +10,14 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Maino96-10022 on 6/3/2017.
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
-    //http://api.themoviedb.org/3/movie/
+
     private ArrayList<Movie> moviesList = new ArrayList<Movie>();
     private Context context;
     private MovieAdapterOnClickHandler mClickHandler;
@@ -30,7 +31,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         this.context = context;
         mClickHandler = clickHandler;
     }
-
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -72,7 +72,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
                 .resize(185, 50)
                 .centerCrop()
                 .into(holder.imageView);
-
     }
 
     @Override
@@ -81,12 +80,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         return moviesList.size();
     }
 
-//    public void setMovieList(List<Movie> mMovieList) {
-//        this.moviesList = new ArrayList<>();
-//        this.moviesList.addAll(mMovieList);
-//        notifyDataSetChanged();
-//    }
-
+    public void setMovieList(List<Movie> mMovieList) {
+        this.moviesList = new ArrayList<>();
+        this.moviesList.addAll(mMovieList);
+        notifyDataSetChanged();
+    }
 }
 
 

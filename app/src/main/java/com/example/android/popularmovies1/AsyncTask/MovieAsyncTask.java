@@ -6,6 +6,7 @@ import android.widget.ProgressBar;
 
 import com.example.android.popularmovies1.MainActivity;
 import com.example.android.popularmovies1.Movie;
+import com.example.android.popularmovies1.MovieAdapter;
 import com.example.android.popularmovies1.Utils.NetworkUtils;
 
 import org.json.JSONArray;
@@ -24,8 +25,8 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
 
     private static final String TAG = MovieAsyncTask.class.getSimpleName();
     private ProgressBar mLoadingIndicator;
-    private AsyncTaskInterface listener;
-
+    private final AsyncTaskInterface listener;
+    private MovieAdapter mMovieAdapter;
     public MovieAsyncTask(AsyncTaskInterface listener){
         this.listener=listener;
     }
@@ -45,29 +46,35 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
             return null;
         }
         String location = params[0];
-        URL movieRequestUrl = NetworkUtils.createUrl(location);
+        URL movieRequestUrl = NetworkUtils.buildUrl(location);
 
         try {
+            String jsonWeatherResponse = NetworkUtils
+                    .makeHttpRequest(movieRequestUrl);
 
+            List simpleJsonMovieData = NetworkUtils
+                    .extractFeatureFromJson(MovieAsyncTask.this, jsonWeatherResponse);
+
+            return simpleJsonMovieData;
 
 
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        List<Movie> data=new ArrayList<>();
-
-        try{
 
 
         @Override
-        protected void onPostExecute(List<Movie>) {
-
-            listener.returnData(List<Movie> moviesList);
+        protected void onPostExecut (List < Movie > mMovieList) {
+            super.onPostExecute(mMovieList);
+            if (mMovieList != null) {
+                mMovieAdapter.setMovieList(mMovieList);
+            }
         }
+    }
 
 
-}
+
 
 
 

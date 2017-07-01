@@ -10,32 +10,20 @@ public class DetailActivity extends AppCompatActivity {
 
     private static final String TAG = DetailActivity.class.getSimpleName();
 
-    private ImageView posterImage;
-    private TextView title;
-    private TextView overview;
-    private TextView vote;
-    private TextView date;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        posterImage = (ImageView) findViewById(R.id.imageView);
-        title = (TextView) findViewById(R.id.original_title);
-        overview = (TextView) findViewById(R.id.overview);
-        vote = (TextView) findViewById(R.id.vote_average);
-        date = (TextView) findViewById(R.id.release_date);
-
         Intent intent = getIntent();
         Movie movie= intent.getParcelableExtra("Movie");
 
-        String posterImage = movie.getPosterUrl();
-        String title = movie.getOriginalTitle();
-        String overview = movie.getOverview();
-        Double vote = movie.getVoteAverage();
-        
+        String posterUrl = movie.getPosterUrl();
+        String originalTitle = movie.getOriginalTitle();
+        String movieOverview = movie.getMovieOverview();
+        Double voteAverage = movie.getVoteAverage();
+        String releaseDate = movie.getReleaseDate();
 
     }
 }

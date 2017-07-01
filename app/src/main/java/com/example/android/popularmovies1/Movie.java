@@ -17,7 +17,7 @@ public class Movie implements Parcelable {
     /**
      * Base URL for the poster
      */
-    private String BASE_URL = "http://image.tmdb.org/t/p/w185/";
+    private String BASE_POSTER_URL = "http://image.tmdb.org/t/p/w185/";
 
     /**
      * Title of the movie
@@ -27,7 +27,7 @@ public class Movie implements Parcelable {
     /**
      * Overview of the movie
      */
-    private String Overview;
+    private String movieOverview;
 
     /**
      * Movie rating
@@ -39,16 +39,16 @@ public class Movie implements Parcelable {
      */
     private String releaseDate;
 
-    public Movie(String posterUrl, String originalTitle, String Overview, Double voteAverage, String releaseDate) {
+    public Movie(String posterUrl, String originalTitle, String movieOverview, Double voteAverage, String releaseDate) {
         this.posterUrl = posterUrl;
         this.originalTitle = originalTitle;
-        this.Overview = Overview;
+        this.movieOverview = movieOverview;
         this.voteAverage = voteAverage;
         this.releaseDate = releaseDate;
     }
 
     public String getPosterUrl() {
-        return BASE_URL + posterUrl;
+        return BASE_POSTER_URL + posterUrl;
     }
 
     public void setPosterUrl(String poster) {
@@ -63,12 +63,12 @@ public class Movie implements Parcelable {
         this.originalTitle = originalTitle;
     }
 
-    public String getOverview() {
-        return Overview;
+    public String getMovieOverview() {
+        return movieOverview;
     }
 
-    public void setOverview(String Overview) {
-        this.Overview = Overview;
+    public void setMovieOverview(String movieOverview) {
+        this.movieOverview = movieOverview;
     }
 
     public double getVoteAverage() {
@@ -91,7 +91,7 @@ public class Movie implements Parcelable {
     protected Movie(Parcel in) {
         posterUrl = in.readString();
         originalTitle = in.readString();
-        Overview = in.readString();
+        movieOverview = in.readString();
         voteAverage = in.readDouble();
         releaseDate = in.readString();
     }
@@ -105,7 +105,7 @@ public class Movie implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(posterUrl);
         dest.writeString(originalTitle);
-        dest.writeString(Overview);
+        dest.writeString(movieOverview);
         dest.writeDouble(voteAverage);
         dest.writeString(releaseDate);
     }
