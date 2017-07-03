@@ -45,15 +45,15 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
         if (params.length == 0) {
             return null;
         }
-        String location = params[0];
-        URL movieRequestUrl = NetworkUtils.buildUrl(location);
+        String sortMode = params[0];
+        URL movieRequestUrl = NetworkUtils.buildUrl(sortMode);
 
         try {
-            String jsonWeatherResponse = NetworkUtils
+            String jsonMovieResponse = NetworkUtils
                     .makeHttpRequest(movieRequestUrl);
 
             List simpleJsonMovieData = NetworkUtils
-                    .extractFeatureFromJson(MovieAsyncTask.this, jsonWeatherResponse);
+                    .extractFeatureFromJson(jsonMovieResponse);
 
             return simpleJsonMovieData;
 
@@ -65,7 +65,7 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
 
 
         @Override
-        protected void onPostExecut (List < Movie > mMovieList) {
+        protected void onPostExecute (List < Movie > mMovieList) {
             super.onPostExecute(mMovieList);
             if (mMovieList != null) {
                 mMovieAdapter.setMovieList(mMovieList);

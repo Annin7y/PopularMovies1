@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private ProgressBar mLoadingIndicator;
 
+    private MovieAsyncTask asyncTask;
+
+
+
     private static final String SORT_BY_POPULAR = "popular";
     private static final String SORT_BY_RATING = "rating";
 
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MovieAsyncTask asyncTask = new MovieAsyncTask(this);
+        asyncTask = new MovieAsyncTask(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
         mMovieAdapter = new MovieAdapter(this, moviesList, context);
         mRecyclerView.setAdapter(mMovieAdapter);
