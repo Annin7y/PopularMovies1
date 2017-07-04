@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
         if (id == R.id.most_popular) {
             mMovieAdapter.setMovieList(null);
+
             return true;
         }
 
