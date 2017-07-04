@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private RecyclerView mRecyclerView;
 
-    public MovieAdapter mMovieAdapter;
+    public MovieAdapter movieAdapter;
 
     RecyclerView.LayoutManager mLayoutManager;
 
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
         asyncTask = new MovieAsyncTask(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
-        mMovieAdapter = new MovieAdapter(this, moviesList, context);
-        mRecyclerView.setAdapter(mMovieAdapter);
+        movieAdapter = new MovieAdapter(this, moviesList, context);
+        mRecyclerView.setAdapter(movieAdapter);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mErrorMessageDisplay = (TextView) findViewById(R.id.movie_error_message_display);
@@ -90,10 +90,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         startActivity(intent);
     }
 
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
@@ -111,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         int id = item.getItemId();
 
         if (id == R.id.most_popular) {
-            mMovieAdapter.setMovieList(null);
+
 
             return true;
         }

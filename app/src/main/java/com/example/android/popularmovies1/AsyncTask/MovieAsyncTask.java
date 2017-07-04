@@ -26,11 +26,13 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
     private static final String TAG = MovieAsyncTask.class.getSimpleName();
     private ProgressBar mLoadingIndicator;
     private final AsyncTaskInterface listener;
-    private MovieAdapter mMovieAdapter;
-    public MovieAsyncTask(AsyncTaskInterface listener){
-        this.listener=listener;
+    public MovieAdapter movieAdapter;
+
+    public MovieAsyncTask(AsyncTaskInterface listener) {
+        this.listener = listener;
     }
 
+ //   public MovieAsyncTask(MovieAdapter adapter){ movieAdapter = adapter; }
 
     @Override
     protected void onPreExecute() {
@@ -66,7 +68,7 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
         @Override
         protected void onPostExecute(List<Movie >mMovieList) {
             if (mMovieList != null) {
-                mMovieAdapter.setMovieList(mMovieList);
+                movieAdapter.setMovieList(mMovieList);
             }
         }
     }
