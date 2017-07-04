@@ -91,6 +91,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
 
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         /* Return true so that the menu is displayed in the Toolbar */
         return true;
     }
+
 
 
     @Override

@@ -62,11 +62,9 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
             e.printStackTrace();
             return null;
         }
-
-
+    }
         @Override
-        protected void onPostExecute (List < Movie > mMovieList) {
-            super.onPostExecute(mMovieList);
+        protected void onPostExecute(List<Movie >mMovieList) {
             if (mMovieList != null) {
                 mMovieAdapter.setMovieList(mMovieList);
             }
