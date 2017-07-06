@@ -108,8 +108,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         int id = item.getItemId();
 
         if (id == R.id.most_popular) {
-
-            asyncTask = new MovieAsyncTask(movieAdapter);
+            asyncTask = new MovieAsyncTask(this);
             asyncTask.execute("most_popular");
             return true;
         }
