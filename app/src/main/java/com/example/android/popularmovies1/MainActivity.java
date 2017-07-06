@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private RecyclerView mRecyclerView;
 
-    public MovieAdapter movieAdapter;
+    private MovieAdapter movieAdapter;
 
     RecyclerView.LayoutManager mLayoutManager;
 
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         setContentView(R.layout.activity_main);
 
         asyncTask = new MovieAsyncTask(this);
+        asyncTask.execute();
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
         movieAdapter = new MovieAdapter(this, moviesList, context);
         mRecyclerView.setAdapter(movieAdapter);
@@ -108,7 +109,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
         if (id == R.id.most_popular) {
 
-
+            asyncTask = new MovieAsyncTask(movieAdapter);
+            asyncTask.execute("most_popular");
             return true;
         }
 
