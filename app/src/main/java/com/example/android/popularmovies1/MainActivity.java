@@ -62,13 +62,19 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mRecyclerView.setLayoutManager(mLayoutManager);
         mErrorMessageDisplay = (TextView) findViewById(R.id.movie_error_message_display);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        MovieAsyncTask myTask = new MovieAsyncTask(this);
+        myTask.execute();
+
     }
 
     @Override
     public void returnData(List<Movie> moviesList) {
         for (Movie movie : moviesList) {
             Log.i("TITLE: ", movie.getOriginalTitle());
-         //   movieAdapter = new MovieAdapter(MovieAdapter.MovieAdapterOnClickHandler, moviesList, context);
+       //   movieAdapter = new MovieAdapter(List <Movie> moviesList, context);
+            movieAdapter = new MovieAdapter(MovieAdapter, moviesList, context);
+            mRecyclerView.setAdapter(movieAdapter);
+
         }
     }
 
@@ -100,19 +106,21 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.most_popular:
 
-        if (id == R.id.most_popular) {
-            asyncTask = new MovieAsyncTask(this);
-            asyncTask.execute("most_popular");
-            return true;
-        }
+                asyncTask.execute("most_popular");
+                movieAdapter.setMovieList(null);
+                returnData(moviesList);
+                return true;
 
-        if (id == R.id.top_rated) {
-
-            return true;
-        }
+            case R.id.top_rated:
+                asyncTask.execute("top_rated");
+                returnData(List<Movie>moviesList);
+                return true;
+            default:
 
         return super.onOptionsItemSelected(item);
 
     }
-}
+}}
