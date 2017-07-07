@@ -4,17 +4,11 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.android.popularmovies1.MainActivity;
 import com.example.android.popularmovies1.Movie;
 import com.example.android.popularmovies1.MovieAdapter;
 import com.example.android.popularmovies1.Utils.NetworkUtils;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,14 +26,11 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
         this.listener = listener;
     }
 
- //   public MovieAsyncTask(MovieAdapter adapter){ movieAdapter = adapter; }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         mLoadingIndicator.setVisibility(View.VISIBLE);
     }
-
 
     @Override
     protected List<Movie> doInBackground(String... params) {
@@ -72,7 +63,6 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
                 movieAdapter.setMovieList(mMovieList);
                 listener.returnData(mMovieList);
             }
-
         }
     }
 

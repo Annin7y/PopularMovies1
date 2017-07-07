@@ -11,14 +11,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.popularmovies1.AsyncTask.AsyncTaskInterface;
 import com.example.android.popularmovies1.AsyncTask.MovieAsyncTask;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private MovieAsyncTask asyncTask;
 
 
-
     private static final String SORT_BY_POPULAR = "popular";
     private static final String SORT_BY_RATING = "rating";
 
@@ -59,21 +55,20 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        asyncTask = new MovieAsyncTask(this);
-        asyncTask.execute();
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
         movieAdapter = new MovieAdapter(this, moviesList, context);
         mRecyclerView.setAdapter(movieAdapter);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mErrorMessageDisplay = (TextView) findViewById(R.id.movie_error_message_display);
-
+        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
     }
 
     @Override
     public void returnData(List<Movie> moviesList) {
         for (Movie movie : moviesList) {
             Log.i("TITLE: ", movie.getOriginalTitle());
+         //   movieAdapter = new MovieAdapter(MovieAdapter.MovieAdapterOnClickHandler, moviesList, context);
         }
     }
 
@@ -100,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         /* Return true so that the menu is displayed in the Toolbar */
         return true;
     }
-
 
 
     @Override
