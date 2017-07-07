@@ -45,11 +45,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private MovieAsyncTask asyncTask;
 
-
-    private static final String SORT_BY_POPULAR = "popular";
-    private static final String SORT_BY_RATING = "rating";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +66,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     public void returnData(List<Movie> moviesList) {
         for (Movie movie : moviesList) {
             Log.i("TITLE: ", movie.getOriginalTitle());
-       //   movieAdapter = new MovieAdapter(List <Movie> moviesList, context);
-            movieAdapter = new MovieAdapter(MovieAdapter, moviesList, context);
+        movieAdapter = new MovieAdapter(this,moviesList, context);
             mRecyclerView.setAdapter(movieAdapter);
 
         }
@@ -116,11 +110,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
             case R.id.top_rated:
                 asyncTask.execute("top_rated");
-                returnData(List<Movie>moviesList);
+                returnData(moviesList);
                 return true;
             default:
 
-        return super.onOptionsItemSelected(item);
-
+                return super.onOptionsItemSelected(item);
+        }
     }
-}}
+}

@@ -29,7 +29,7 @@ public class MovieAsyncTask extends AsyncTask <String, Void, List<Movie>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mLoadingIndicator.setVisibility(View.VISIBLE);
+     //   mLoadingIndicator.setVisibility(View.VISIBLE);
     }
 
     @Override
