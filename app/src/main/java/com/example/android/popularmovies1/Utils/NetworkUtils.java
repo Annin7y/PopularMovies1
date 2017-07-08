@@ -58,7 +58,7 @@ public class NetworkUtils {
     public NetworkUtils() {
     }
 
-    private static List<Movie> fetchMoviesData(String requestUrl) {
+    private static ArrayList<Movie> fetchMoviesData(String requestUrl) {
         // Create URL object
         //   URL url = createUrl(requestUrl);
         URL url = buildUrl(requestUrl);
@@ -72,7 +72,7 @@ public class NetworkUtils {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link Movie}s
-        List<Movie> moviesList = extractFeatureFromJson(jsonResponse);
+        ArrayList<Movie> moviesList = extractFeatureFromJson(jsonResponse);
 
         // Return the list of {@link Movie}s
         return moviesList;
@@ -164,12 +164,12 @@ public class NetworkUtils {
         return output.toString();
     }
 
-    public static List<Movie> extractFeatureFromJson(String movieJSON) {
+    public static ArrayList<Movie> extractFeatureFromJson(String movieJSON) {
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(movieJSON)) {
             return null;
         }
-        List<Movie> movies = new ArrayList<>();
+        ArrayList<Movie> movies = new ArrayList<>();
         try {
 
             // Create a JSONObject from the JSON response string

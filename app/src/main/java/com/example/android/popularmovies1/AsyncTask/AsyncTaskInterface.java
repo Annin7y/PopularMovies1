@@ -2,6 +2,7 @@ package com.example.android.popularmovies1.AsyncTask;
 
 import com.example.android.popularmovies1.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  */
 
 public interface AsyncTaskInterface  {
-    void returnData(List<Movie> moviesList);
+    void returnData(ArrayList<Movie> moviesList);
 }
 
 

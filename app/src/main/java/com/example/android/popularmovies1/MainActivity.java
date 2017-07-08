@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
     @Override
-    public void returnData(List<Movie> moviesList) {
+    public void returnData(ArrayList<Movie> moviesList) {
         for (Movie movie : moviesList) {
             Log.i("TITLE: ", movie.getOriginalTitle());
-            movieAdapter = new MovieAdapter(this, ArrayList < Movie > moviesList, context);
+            movieAdapter = new MovieAdapter(this, moviesList, context);
             mRecyclerView.setAdapter(movieAdapter);
 
         }
@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
         switch (item.getItemId()) {
             case R.id.most_popular:
 
