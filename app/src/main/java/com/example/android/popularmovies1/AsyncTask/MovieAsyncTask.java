@@ -1,7 +1,6 @@
 package com.example.android.popularmovies1.AsyncTask;
 
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.android.popularmovies1.Movie;
@@ -10,7 +9,6 @@ import com.example.android.popularmovies1.Utils.NetworkUtils;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Maino96-10022 on 6/8/2017.
