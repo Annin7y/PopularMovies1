@@ -42,9 +42,9 @@ public class NetworkUtils {
 
     private static final String KEY_RELEASE_DATE = "release_date";
 
-    private static final String SORT_BY_POPULAR = "popular";
+    public static final String SORT_BY_POPULAR = "most_popular";
 
-    private static final String SORT_BY_RATING = "rating";
+    public static final String SORT_BY_RATING = "top_rated";
 
     private static final String API_KEY = "api_key";
 

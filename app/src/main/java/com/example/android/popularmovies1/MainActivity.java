@@ -44,11 +44,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private ProgressBar mLoadingIndicator;
 
     private MovieAsyncTask asyncTask;
-
-    private static final String SORT_BY_POPULAR = "most_popular";
-
-    private static final String SORT_BY_RATING = "top_rated";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
