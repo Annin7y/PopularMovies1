@@ -43,8 +43,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private ProgressBar mLoadingIndicator;
 
-    private MovieAsyncTask asyncTask;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mRecyclerView.setLayoutManager(mLayoutManager);
         mErrorMessageDisplay = (TextView) findViewById(R.id.movie_error_message_display);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-        MovieAsyncTask myTask = new MovieAsyncTask(this);
-        myTask.execute();
 
     }
 
@@ -99,16 +96,16 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        MovieAsyncTask myTask = new MovieAsyncTask(this);
         switch (item.getItemId()) {
             case R.id.most_popular:
-
-                asyncTask.execute("most_popular");
-                movieAdapter.setMovieList(null);
+             //   MovieAsyncTask asyncTask = new MovieAsyncTask(this);
+                myTask.execute("most_popular");
                 returnData(moviesList);
                 return true;
 
             case R.id.top_rated:
-                asyncTask.execute("top_rated");
+                myTask.execute("top_rated");
                 returnData(moviesList);
                 return true;
             default:
