@@ -48,7 +48,7 @@ public class NetworkUtils {
 
     private static final String API_KEY = "api_key";
 
-    final static String QUERY_PARAM = "q";
+   // final static String QUERY_PARAM = "q";
 
     private static final String BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular";
 
@@ -83,13 +83,13 @@ public class NetworkUtils {
         try {
             if (sortMode.equals(SORT_BY_POPULAR)) {
                 Uri builtUri = Uri.parse(BASE_URL_POPULAR).buildUpon()
-                        .appendQueryParameter(QUERY_PARAM, sortMode)
+                     //   .appendQueryParameter(QUERY_PARAM, sortMode)
                         .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIES_API_KEY)
                         .build();
                 url = new URL(builtUri.toString());
             } else if (sortMode.equals(SORT_BY_RATING)) {
                 Uri builtUri = Uri.parse(BASE_URL_TOP_RATED).buildUpon()
-                        .appendQueryParameter(QUERY_PARAM, sortMode)
+                   //     .appendQueryParameter(QUERY_PARAM, sortMode)
                         .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIES_API_KEY)
                         .build();
                 url = new URL(builtUri.toString());
@@ -107,7 +107,7 @@ public class NetworkUtils {
 
     public static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
-
+        Log.i("URL: ", url.toString());
         // If the URL is null, then return early.
         if (url == null) {
             return jsonResponse;
