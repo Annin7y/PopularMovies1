@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     public void returnData(ArrayList<Movie> moviesList) {
         for (Movie movie : moviesList) {
             Log.i("TITLE: ", movie.getOriginalTitle());
-            movieAdapter = new MovieAdapter(this, moviesList, context);
+            movieAdapter = new MovieAdapter(this, moviesList, MainActivity.this);
             mRecyclerView.setAdapter(movieAdapter);
 
         }

@@ -59,7 +59,6 @@ public class MovieAsyncTask extends AsyncTask <String, Void, ArrayList<Movie>> {
         protected void onPostExecute(ArrayList<Movie > mMovieList) {
             super.onPostExecute(mMovieList);
             if (mMovieList != null) {
-                movieAdapter.setMovieList(mMovieList);
                 listener.returnData(mMovieList);
             }
         }
