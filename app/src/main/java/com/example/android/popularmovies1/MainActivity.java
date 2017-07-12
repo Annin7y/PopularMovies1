@@ -61,13 +61,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public void returnData(ArrayList<Movie> simpleJsonMovieData) {
-        for (Movie movie : simpleJsonMovieData) {
-            Log.i("TITLE: ", movie.getOriginalTitle());
             movieAdapter = new MovieAdapter(this, simpleJsonMovieData, MainActivity.this);
             mRecyclerView.setAdapter(movieAdapter);
 
         }
-    }
+
 
     private void showErrorMessage() {
         /* First, hide the currently visible data */
