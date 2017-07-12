@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 
 public interface AsyncTaskInterface  {
-    void returnData(ArrayList<Movie> moviesList);
+    void returnData(ArrayList<Movie> simpleJsonMovieData);
 }
 
 

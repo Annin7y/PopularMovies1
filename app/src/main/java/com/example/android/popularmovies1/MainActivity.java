@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
      */
     // private static final String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
 
-    private ArrayList<Movie> moviesList = new ArrayList<>();
+    private ArrayList<Movie> simpleJsonMovieData = new ArrayList<>();
 
     private Context context;
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         setContentView(R.layout.activity_main);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
-        movieAdapter = new MovieAdapter(this, moviesList, context);
+        movieAdapter = new MovieAdapter(this, simpleJsonMovieData, context);
         mRecyclerView.setAdapter(movieAdapter);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
     @Override
-    public void returnData(ArrayList<Movie> moviesList) {
-        for (Movie movie : moviesList) {
+    public void returnData(ArrayList<Movie> simpleJsonMovieData) {
+        for (Movie movie : simpleJsonMovieData) {
             Log.i("TITLE: ", movie.getOriginalTitle());
-            movieAdapter = new MovieAdapter(this, moviesList, MainActivity.this);
+            movieAdapter = new MovieAdapter(this, simpleJsonMovieData, MainActivity.this);
             mRecyclerView.setAdapter(movieAdapter);
 
         }
@@ -101,12 +101,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
             case R.id.most_popular:
              //   MovieAsyncTask asyncTask = new MovieAsyncTask(this);
                 myTask.execute("most_popular");
-                returnData(moviesList);
-                return true;
+                returnData(simpleJsonMovieData );
 
             case R.id.top_rated:
                 myTask.execute("top_rated");
-                returnData(moviesList);
+                returnData(simpleJsonMovieData);
                 return true;
             default:
 
