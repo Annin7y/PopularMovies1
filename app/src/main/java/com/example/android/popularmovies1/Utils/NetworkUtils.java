@@ -20,7 +20,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Maino96-10022 on 6/20/2017.
@@ -83,13 +82,11 @@ public class NetworkUtils {
         try {
             if (sortMode.equals(SORT_BY_POPULAR)) {
                 Uri builtUri = Uri.parse(BASE_URL_POPULAR).buildUpon()
-                     //   .appendQueryParameter(QUERY_PARAM, sortMode)
                         .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIES_API_KEY)
                         .build();
                 url = new URL(builtUri.toString());
             } else if (sortMode.equals(SORT_BY_RATING)) {
                 Uri builtUri = Uri.parse(BASE_URL_TOP_RATED).buildUpon()
-                   //     .appendQueryParameter(QUERY_PARAM, sortMode)
                         .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIES_API_KEY)
                         .build();
                 url = new URL(builtUri.toString());

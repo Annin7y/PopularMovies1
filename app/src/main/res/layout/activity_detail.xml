@@ -20,7 +20,7 @@
         android:layout_below="@id/imageView"
         android:layout_marginLeft="15dp"
         android:text="Avatar"
-        android:textSize="16sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_marginLeft="15dp"
         android:layout_below="@id/original_title"
         android:text="Fantasy"
-        android:textSize="12sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/vote_average"
@@ -39,7 +39,7 @@
         android:layout_marginLeft="15dp"
         android:layout_below="@id/overview"
         android:text="8.5/10"
-        android:textSize="12sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/release_date"
@@ -48,6 +48,6 @@
         android:layout_marginLeft="15dp"
         android:layout_below="@id/vote_average"
         android:text="July 5, 2012"
-        android:textSize="12sp" />
+        android:textSize="17sp" />
 
 </RelativeLayout>

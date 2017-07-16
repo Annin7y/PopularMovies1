@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mRecyclerView.setLayoutManager(mLayoutManager);
         mErrorMessageDisplay = (TextView) findViewById(R.id.movie_error_message_display);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-
+        MovieAsyncTask myTask = new MovieAsyncTask(this);
+        myTask.execute("most_popular");
     }
 
     @Override
@@ -97,9 +98,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         MovieAsyncTask myTask = new MovieAsyncTask(this);
         switch (item.getItemId()) {
             case R.id.most_popular:
-             //   MovieAsyncTask asyncTask = new MovieAsyncTask(this);
                 myTask.execute("most_popular");
                 returnData(simpleJsonMovieData );
+                return true;
 
             case R.id.top_rated:
                 myTask.execute("top_rated");
