@@ -5,6 +5,5 @@
     android:layout_height="wrap_content"
     android:scaleType="fitXY"
     android:layout_marginLeft="45dp"
-    android:adjustViewBounds="true"
-    android:padding="5dp"/>
+    android:adjustViewBounds="true" />
 

@@ -23,7 +23,6 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Intent intent = getIntent();
         Movie movie = getIntent().getExtras().getParcelable("Movie");
         poster = (ImageView) findViewById(R.id.imageView);
 
@@ -40,17 +39,8 @@ public class DetailActivity extends AppCompatActivity {
         TextView voteAverage = (TextView) findViewById(R.id.vote_average);
         voteAverage.setText(movie.getVoteAverage());
 
-    //    Date date = null;
-
         TextView releaseDate = (TextView) findViewById(R.id.release_date);
         releaseDate.setText(movie.getReleaseDate());
-
-    //    SimpleDateFormat newDateFormat= new SimpleDateFormat("MMM dd, yyyy hh:mm:ss");
-     //   String finalDate = newDateFormat.format(date);
-
-     //   releaseDate.setText(finalDate);
-
-
 
     }
 

@@ -20,7 +20,7 @@
         android:layout_below="@id/imageView"
         android:layout_marginLeft="15dp"
         android:padding="3dp"
-        android:text="Avatar"
+        android:text="@string/movie_title"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
         android:layout_marginRight="5dp"
         android:layout_below="@id/original_title"
         android:padding="3dp"
-        android:text="Fantasy"
+        android:text="@string/movie_overview"
         android:textSize="14sp" />
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_marginLeft="15dp"
         android:layout_below="@id/movie_overview"
         android:padding="3dp"
-        android:text="8.5/10"
+        android:text="@string/movie_vote_average"
         android:textSize="14sp" />
 
     <TextView

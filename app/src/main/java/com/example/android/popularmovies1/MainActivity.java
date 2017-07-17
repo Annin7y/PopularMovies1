@@ -3,6 +3,7 @@ package com.example.android.popularmovies1;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 
 import com.example.android.popularmovies1.AsyncTask.AsyncTaskInterface;
 import com.example.android.popularmovies1.AsyncTask.MovieAsyncTask;
+import com.example.android.popularmovies1.Utils.DividerItemDecoration;
+import com.example.android.popularmovies1.Utils.VerticalSpacingDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
         MovieAsyncTask myTask = new MovieAsyncTask(this);
         myTask.execute("most_popular");
+        mRecyclerView.addItemDecoration(new VerticalSpacingDecoration(64));
+        mRecyclerView.addItemDecoration(
+                new DividerItemDecoration(ContextCompat.getDrawable(getApplicationContext(),
+                        R.drawable.item_decorator)));
+
     }
 
     @Override

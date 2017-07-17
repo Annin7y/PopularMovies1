@@ -189,9 +189,9 @@ public class NetworkUtils {
 
                 String voteName = currentMovie.getString(KEY_VOTE_AVERAGE);
 
-                String releaseName = currentMovie.getString(KEY_RELEASE_DATE);
+                String releaseDate = currentMovie.getString(KEY_RELEASE_DATE);
 
-                Movie movie = new Movie(posterName, movieName, overviewName, voteName, releaseName);
+                Movie movie = new Movie(posterName, movieName, overviewName, voteName, releaseDate);
                 movies.add(movie);
 
             }
