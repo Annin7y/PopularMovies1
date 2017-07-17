@@ -38,11 +38,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView imageView;
+        public TextView releaseDate;
 
         public MovieAdapterViewHolder(View view) {
             super(view);
 
             imageView = (ImageView) view.findViewById(R.id.imageView);
+            releaseDate = (TextView) view.findViewById(R.id.release_date);
             view.setOnClickListener(this);
         }
 
@@ -69,8 +71,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
         //Binding data
         final Movie movieView = moviesList.get(position);
-
-        TextView releaseDate = (TextView) inflater.findViewById(R.id.release_date);
         Movie currentMovie = moviesList.get(position);
 
         SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("2016-09-26T15:57:34Z");
@@ -85,11 +85,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         }
         SimpleDateFormat newDateFormat= new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss'Z'");
         String finalDate = newDateFormat.format(date);
-        
+
         releaseDate.setText(finalDate);
-
-
-
 
         Picasso.with(context)
                 .load(movieView.getPosterUrl())
