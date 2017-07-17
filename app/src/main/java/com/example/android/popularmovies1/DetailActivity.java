@@ -3,11 +3,20 @@ package com.example.android.popularmovies1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DetailActivity extends AppCompatActivity {
 
     private static final String TAG = DetailActivity.class.getSimpleName();
 
+    ImageView poster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,13 +24,34 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         Intent intent = getIntent();
-        Movie movie= intent.getParcelableExtra("Movie");
+        Movie movie = getIntent().getExtras().getParcelable("Movie");
+        poster = (ImageView) findViewById(R.id.imageView);
 
-        String posterUrl = movie.getPosterUrl();
-        String originalTitle = movie.getOriginalTitle();
-        String movieOverview = movie.getMovieOverview();
-        Double voteAverage = movie.getVoteAverage();
-        String releaseDate = movie.getReleaseDate();
+        Picasso.with(this)
+                .load(movie.getPosterUrl())
+                .into(poster);
+        TextView originalTitle = (TextView) findViewById(R.id.original_title);
+        originalTitle.setText(movie.getOriginalTitle());
+
+        TextView movieOverview = (TextView) findViewById(R.id.movie_overview);
+        movieOverview.setText(movie.getMovieOverview());
+
+
+        TextView voteAverage = (TextView) findViewById(R.id.vote_average);
+        voteAverage.setText(movie.getVoteAverage());
+
+    //    Date date = null;
+
+        TextView releaseDate = (TextView) findViewById(R.id.release_date);
+        releaseDate.setText(movie.getReleaseDate());
+
+    //    SimpleDateFormat newDateFormat= new SimpleDateFormat("MMM dd, yyyy hh:mm:ss");
+     //   String finalDate = newDateFormat.format(date);
+
+     //   releaseDate.setText(finalDate);
+
+
 
     }
+
 }

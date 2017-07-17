@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public void returnData(ArrayList<Movie> simpleJsonMovieData) {
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
             movieAdapter = new MovieAdapter(this, simpleJsonMovieData, MainActivity.this);
             mRecyclerView.setAdapter(movieAdapter);
 

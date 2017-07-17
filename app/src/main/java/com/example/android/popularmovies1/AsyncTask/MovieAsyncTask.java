@@ -1,6 +1,7 @@
 package com.example.android.popularmovies1.AsyncTask;
 
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.android.popularmovies1.Movie;

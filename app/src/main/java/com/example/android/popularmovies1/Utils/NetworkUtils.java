@@ -47,8 +47,6 @@ public class NetworkUtils {
 
     private static final String API_KEY = "api_key";
 
-   // final static String QUERY_PARAM = "q";
-
     private static final String BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular";
 
     private static final String BASE_URL_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated";
@@ -189,7 +187,7 @@ public class NetworkUtils {
 
                 String overviewName = currentMovie.getString(KEY_OVERVIEW);
 
-                Double voteName = currentMovie.getDouble(KEY_VOTE_AVERAGE);
+                String voteName = currentMovie.getString(KEY_VOTE_AVERAGE);
 
                 String releaseName = currentMovie.getString(KEY_RELEASE_DATE);
 

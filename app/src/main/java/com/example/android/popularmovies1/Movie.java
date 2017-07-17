@@ -32,14 +32,14 @@ public class Movie implements Parcelable {
     /**
      * Movie rating
      */
-    private double voteAverage;
+    private String voteAverage;
 
     /**
      * Movie release date
      */
     private String releaseDate;
 
-    public Movie(String posterUrl, String originalTitle, String movieOverview, Double voteAverage, String releaseDate) {
+    public Movie(String posterUrl, String originalTitle, String movieOverview, String voteAverage, String releaseDate) {
         this.posterUrl = posterUrl;
         this.originalTitle = originalTitle;
         this.movieOverview = movieOverview;
@@ -71,11 +71,11 @@ public class Movie implements Parcelable {
         this.movieOverview = movieOverview;
     }
 
-    public double getVoteAverage() {
+    public String getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(Double voteAverage) {
+    public void setVoteAverage(String voteAverage) {
         this.voteAverage = voteAverage;
     }
 
@@ -92,7 +92,7 @@ public class Movie implements Parcelable {
         posterUrl = in.readString();
         originalTitle = in.readString();
         movieOverview = in.readString();
-        voteAverage = in.readDouble();
+        voteAverage = in.readString();
         releaseDate = in.readString();
     }
 
@@ -106,7 +106,7 @@ public class Movie implements Parcelable {
         dest.writeString(posterUrl);
         dest.writeString(originalTitle);
         dest.writeString(movieOverview);
-        dest.writeDouble(voteAverage);
+        dest.writeString(voteAverage);
         dest.writeString(releaseDate);
     }
 

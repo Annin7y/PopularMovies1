@@ -19,27 +19,31 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_marginLeft="15dp"
+        android:padding="3dp"
         android:text="Avatar"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/overview"
+        android:id="@+id/movie_overview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="5dp"
         android:layout_below="@id/original_title"
+        android:padding="3dp"
         android:text="Fantasy"
-        android:textSize="17sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/vote_average"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_below="@id/overview"
+        android:layout_below="@id/movie_overview"
+        android:padding="3dp"
         android:text="8.5/10"
-        android:textSize="17sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/release_date"
@@ -47,7 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_below="@id/vote_average"
-        android:text="July 5, 2012"
-        android:textSize="17sp" />
+        android:padding="3dp"
+        android:text="2012-07-14"
+        android:textSize="14sp" />
 
 </RelativeLayout>
