@@ -6,10 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Maino96-10022 on 6/3/2017.
@@ -20,6 +24,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     private ArrayList<Movie> moviesList = new ArrayList<Movie>();
     private Context context;
     private MovieAdapterOnClickHandler mClickHandler;
+    public TextView releaseDate;
 
     /**
      * The interface that receives onClick messages.
@@ -82,6 +87,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         //Binding data
         final Movie movieView = moviesList.get(position);
+        Movie currentMovie = moviesList.get(position);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("2016-09-26T15:57:34Z");
+        Date date = null;
+
+        try {
+            date = simpleDateFormat.parse(currentMovie.getReleaseDate());
+            date.toString();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss'Z'");
+        String finalDate = newDateFormat.format(date);
+
+        holder.releaseDate.setText(finalDate);
 
         Picasso.with(context)
                 .load(movieView.getPosterUrl())

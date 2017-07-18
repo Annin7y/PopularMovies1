@@ -37,7 +37,7 @@ public class Movie implements Parcelable {
     /**
      * Movie release date
      */
-    private String releaseDate;
+    public String releaseDate;
 
     public Movie(String posterUrl, String originalTitle, String movieOverview, String voteAverage, String releaseDate) {
         this.posterUrl = posterUrl;
