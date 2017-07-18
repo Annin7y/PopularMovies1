@@ -24,7 +24,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     private ArrayList<Movie> moviesList = new ArrayList<Movie>();
     private Context context;
     private MovieAdapterOnClickHandler mClickHandler;
-    public TextView releaseDate;
 
     /**
      * The interface that receives onClick messages.
@@ -51,10 +50,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView imageView;
+        public TextView releaseDate;
 
         public MovieAdapterViewHolder(View view) {
             super(view);
             imageView = (ImageView) view.findViewById(R.id.imageView);
+            releaseDate = (TextView) view.findViewById(R.id.release_date);
             view.setOnClickListener(this);
         }
 
@@ -77,7 +78,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         int layoutIdForListItem = R.layout.movie_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
-
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
         return new MovieAdapterViewHolder(view);
     }
@@ -88,6 +88,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         //Binding data
         final Movie movieView = moviesList.get(position);
         Movie currentMovie = moviesList.get(position);
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("2016-09-26T15:57:34Z");
         Date date = null;
 
@@ -102,6 +103,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         String finalDate = newDateFormat.format(date);
 
         holder.releaseDate.setText(finalDate);
+
 
         Picasso.with(context)
                 .load(movieView.getPosterUrl())
