@@ -56,8 +56,8 @@ public class NetworkUtils {
     }
 
     private static ArrayList<Movie> fetchMoviesData(String requestUrl) {
-        // Create URL object
-        //   URL url = createUrl(requestUrl);
+
+        // Create a URL object
         URL url = buildUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
@@ -75,6 +75,11 @@ public class NetworkUtils {
         return moviesList;
     }
 
+    /**
+     *
+     * @param sortMode
+     * @return either most popular or top rated movies
+     */
     public static URL buildUrl(String sortMode) {
         URL url = null;
         try {
@@ -180,9 +185,9 @@ public class NetworkUtils {
                 // Get a single movie description at position i within the list of movies
                 JSONObject currentMovie = movieArray.getJSONObject(i);
 
+                // Extract the value for the key called "poster_title"
                 String posterName = currentMovie.getString(KEY_POSTER_PATH);
 
-                // Extract the value for the key called "original_title"
                 String movieName = currentMovie.getString(KEY_ORIGINAL_TITLE);
 
                 String overviewName = currentMovie.getString(KEY_OVERVIEW);

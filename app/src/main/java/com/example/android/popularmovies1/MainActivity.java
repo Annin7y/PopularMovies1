@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,16 +20,10 @@ import com.example.android.popularmovies1.Utils.DividerItemDecoration;
 import com.example.android.popularmovies1.Utils.VerticalSpacingDecoration;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler, AsyncTaskInterface {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-
-    /**
-     * Base URL for the image
-     */
-    // private static final String BASE_URL = "http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
 
     private ArrayList<Movie> simpleJsonMovieData = new ArrayList<>();
 
@@ -52,30 +45,39 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        context = getApplicationContext();
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
         movieAdapter = new MovieAdapter(this, simpleJsonMovieData, context);
         mRecyclerView.setAdapter(movieAdapter);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+        //specifying that the images will be displayed in two columns
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(context, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mErrorMessageDisplay = (TextView) findViewById(R.id.movie_error_message_display);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+
+        /**
+         *  Starting the asyncTask so that movies load upon launching the app. most popular are loaded first.
+         */
+
         MovieAsyncTask myTask = new MovieAsyncTask(this);
         myTask.execute("most_popular");
+
+        //specifying the space between images
         mRecyclerView.addItemDecoration(new VerticalSpacingDecoration(64));
+
+        //the vertical divider
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(ContextCompat.getDrawable(getApplicationContext(),
                         R.drawable.item_decorator)));
-
     }
 
     @Override
     public void returnData(ArrayList<Movie> simpleJsonMovieData) {
         mLoadingIndicator.setVisibility(View.INVISIBLE);
-            movieAdapter = new MovieAdapter(this, simpleJsonMovieData, MainActivity.this);
-            mRecyclerView.setAdapter(movieAdapter);
-
-        }
-
+        movieAdapter = new MovieAdapter(this, simpleJsonMovieData, MainActivity.this);
+        mRecyclerView.setAdapter(movieAdapter);
+    }
 
     private void showErrorMessage() {
         /* First, hide the currently visible data */
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         switch (item.getItemId()) {
             case R.id.most_popular:
                 myTask.execute("most_popular");
-                returnData(simpleJsonMovieData );
+                returnData(simpleJsonMovieData);
                 return true;
 
             case R.id.top_rated:
