@@ -68,9 +68,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             int adapterPosition = getAdapterPosition();
             Movie posterClick = moviesList.get(adapterPosition);
             mClickHandler.onClick(posterClick);
-            releaseDate = (TextView) v.findViewById(R.id.release_date);
+            releaseDate= (TextView) v.findViewById(R.id.release_date);
         }
-
         public TextView getReleaseDate() {
             return releaseDate;
         }
@@ -106,8 +105,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         SimpleDateFormat newDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss'Z'");
         String finalDate = newDateFormat.format(date);
 
-        holder.releaseDate.setText(finalDate);
-
+       // holder.releaseDate.setText(finalDate);
+        holder.getReleaseDate().setText(finalDate);
 
         Picasso.with(context)
                 .load(movieView.getPosterUrl())
