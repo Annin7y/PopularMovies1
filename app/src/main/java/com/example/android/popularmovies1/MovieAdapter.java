@@ -50,7 +50,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView imageView;
-        private TextView releaseDate;
+        public TextView releaseDate;
 
         public MovieAdapterViewHolder(View view) {
             super(view);
