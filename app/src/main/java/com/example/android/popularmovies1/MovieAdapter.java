@@ -50,7 +50,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView imageView;
-        public TextView releaseDate;
+        private TextView releaseDate;
 
         public MovieAdapterViewHolder(View view) {
             super(view);
@@ -68,6 +68,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             int adapterPosition = getAdapterPosition();
             Movie posterClick = moviesList.get(adapterPosition);
             mClickHandler.onClick(posterClick);
+            releaseDate = (TextView) v.findViewById(R.id.release_date);
+        }
+
+        public TextView getReleaseDate() {
+            return releaseDate;
         }
     }
 
