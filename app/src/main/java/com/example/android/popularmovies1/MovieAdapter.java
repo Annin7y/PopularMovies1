@@ -93,7 +93,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         final Movie movieView = moviesList.get(position);
         Movie currentMovie = moviesList.get(position);
 
-     //   String originalDate = "2016-09-26T15:57:34Z";
+        String originalDate = "2016-09-26T15:57:34Z";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
 
