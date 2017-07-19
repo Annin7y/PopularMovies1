@@ -55,7 +55,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         public MovieAdapterViewHolder(View view) {
             super(view);
             imageView = (ImageView) view.findViewById(R.id.imageView);
-            releaseDate= (TextView) view.findViewById(R.id.release_date);
+            releaseDate = (TextView) view.findViewById(R.id.release_date);
             view.setOnClickListener(this);
         }
 
@@ -70,8 +70,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             Movie posterClick = moviesList.get(adapterPosition);
             mClickHandler.onClick(posterClick);
         }
-     public TextView getReleaseDate() {
-         return releaseDate;
+
+        public TextView getReleaseDate() {
+            return releaseDate;
         }
     }
 
@@ -105,7 +106,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         SimpleDateFormat newDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss'Z'");
         String finalDate = newDateFormat.format(date);
 
-       // holder.releaseDate.setText(finalDate);
+        holder.releaseDate.setText(finalDate);
         holder.getReleaseDate().setText(finalDate);
 
         Picasso.with(context)
