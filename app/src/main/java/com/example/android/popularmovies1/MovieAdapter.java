@@ -93,7 +93,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         final Movie movieView = moviesList.get(position);
         Movie currentMovie = moviesList.get(position);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("2016-09-26T15:57:34Z");
+     //   String originalDate = "2016-09-26T15:57:34Z";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
 
         try {
@@ -103,11 +104,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        SimpleDateFormat newDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss'Z'");
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("MMM dd, yyyy");
         String finalDate = newDateFormat.format(date);
 
         holder.releaseDate.setText(finalDate);
-        holder.getReleaseDate().setText(finalDate);
+
 
         Picasso.with(context)
                 .load(movieView.getPosterUrl())
@@ -117,7 +118,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return moviesList.size();
     }
 
