@@ -43,7 +43,7 @@ public class DetailActivity extends AppCompatActivity {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
-m
+
         try {
             date = simpleDateFormat.parse(movie.getReleaseDate());
             date.toString();
