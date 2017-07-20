@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DetailActivity extends AppCompatActivity {
 
     private static final String TAG = DetailActivity.class.getSimpleName();
@@ -36,6 +40,22 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView releaseDate = (TextView) findViewById(R.id.release_date);
         releaseDate.setText(movie.getReleaseDate());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+m
+        try {
+            date = simpleDateFormat.parse(movie.getReleaseDate());
+            date.toString();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("MMM dd, yyyy");
+        String finalDate = newDateFormat.format(date);
+
+        releaseDate.setText(finalDate);
+
 
     }
 }
