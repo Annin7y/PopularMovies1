@@ -1,6 +1,8 @@
 package com.example.android.popularmovies1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,40 +24,44 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Movie movie = getIntent().getExtras().getParcelable("Movie");
+        //Movie movie = getIntent().getExtras().getParcelable("Movie");
         poster = (ImageView) findViewById(R.id.imageView);
 
-        Picasso.with(this)
-                .load(movie.getPosterUrl())
-                .into(poster);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        Movie movie;
+        if (extras != null) {
+            movie = extras.getParcelable("Movie");
+            Picasso.with(this)
+                        .load(movie.getPosterUrl())
+                        .into(poster);
 
-        TextView originalTitle = (TextView) findViewById(R.id.original_title);
-        originalTitle.setText(movie.getOriginalTitle());
+                TextView originalTitle = (TextView) findViewById(R.id.original_title);
+                originalTitle.setText(movie.getOriginalTitle());
 
-        TextView movieOverview = (TextView) findViewById(R.id.movie_overview);
-        movieOverview.setText(movie.getMovieOverview());
+                TextView movieOverview = (TextView) findViewById(R.id.movie_overview);
+                movieOverview.setText(movie.getMovieOverview());
 
-        TextView voteAverage = (TextView) findViewById(R.id.vote_average);
-        voteAverage.setText(movie.getVoteAverage());
+                TextView voteAverage = (TextView) findViewById(R.id.vote_average);
+                voteAverage.setText(movie.getVoteAverage());
 
-        TextView releaseDate = (TextView) findViewById(R.id.release_date);
-        releaseDate.setText(movie.getReleaseDate());
+                TextView releaseDate = (TextView) findViewById(R.id.release_date);
+                releaseDate.setText(movie.getReleaseDate());
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
 
-        try {
-            date = simpleDateFormat.parse(movie.getReleaseDate());
-            date.toString();
+                try {
+                    date = simpleDateFormat.parse(movie.getReleaseDate());
+                    date.toString();
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        SimpleDateFormat newDateFormat = new SimpleDateFormat("MMM dd, yyyy");
-        String finalDate = newDateFormat.format(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SimpleDateFormat newDateFormat = new SimpleDateFormat("MMM dd, yyyy");
+                String finalDate = newDateFormat.format(date);
 
-        releaseDate.setText(finalDate);
-
-
+                releaseDate.setText(finalDate);
+            }
     }
 }

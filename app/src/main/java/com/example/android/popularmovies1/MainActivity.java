@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         MovieAsyncTask myTask = new MovieAsyncTask(this);
