@@ -27,11 +27,9 @@ public class DetailActivity extends AppCompatActivity {
         //Movie movie = getIntent().getExtras().getParcelable("Movie");
         poster = (ImageView) findViewById(R.id.imageView);
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
         Movie movie;
-        if (extras != null) {
-            movie = extras.getParcelable("Movie");
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            movie = getIntent().getExtras().getParcelable("Movie");
             Picasso.with(this)
                         .load(movie.getPosterUrl())
                         .into(poster);
