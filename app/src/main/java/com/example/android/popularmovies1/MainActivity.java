@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import com.example.android.popularmovies1.AsyncTask.AsyncTaskInterface;
 import com.example.android.popularmovies1.AsyncTask.MovieAsyncTask;
-import com.example.android.popularmovies1.Utils.DividerItemDecoration;
-import com.example.android.popularmovies1.Utils.VerticalSpacingDecoration;
+import com.example.android.popularmovies1.Decoration.DividerItemDecoration;
+import com.example.android.popularmovies1.Decoration.VerticalSpacingDecoration;
 
 import java.util.ArrayList;
 

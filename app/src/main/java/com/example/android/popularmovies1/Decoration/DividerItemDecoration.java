@@ -1,4 +1,4 @@
-package com.example.android.popularmovies1.Utils;
+package com.example.android.popularmovies1.Decoration;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;

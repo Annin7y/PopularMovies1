@@ -91,9 +91,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         //Binding data
         final Movie movieView = moviesList.get(position);
-        Movie currentMovie = moviesList.get(position);
-
-       // String originalDate = "2016-09-26T15:57:34Z";
 
         Picasso.with(context)
                 .load(movieView.getPosterUrl())
