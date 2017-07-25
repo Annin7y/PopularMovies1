@@ -10,10 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Maino96-10022 on 6/3/2017.
@@ -24,6 +21,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     private ArrayList<Movie> moviesList = new ArrayList<Movie>();
     private Context context;
     private MovieAdapterOnClickHandler mClickHandler;
+    public static final int IMAGE_HEIGHT= 185;
+    public static final int IMAGE_WIDTH= 50;
 
     /**
      * The interface that receives onClick messages.
@@ -94,7 +93,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         Picasso.with(context)
                 .load(movieView.getPosterUrl())
-                .resize(185, 50)
+                .resize(IMAGE_HEIGHT, IMAGE_WIDTH)
                 .centerCrop()
                 .into(holder.imageView);
     }
@@ -110,6 +109,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         notifyDataSetChanged();
     }
 }
+
+
+
+
+
+
+
 
 
 

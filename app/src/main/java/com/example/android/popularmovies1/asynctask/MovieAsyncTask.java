@@ -1,9 +1,9 @@
-package com.example.android.popularmovies1.AsyncTask;
+package com.example.android.popularmovies1.asynctask;
 
 import android.os.AsyncTask;
 
 import com.example.android.popularmovies1.Movie;
-import com.example.android.popularmovies1.Utils.NetworkUtils;
+import com.example.android.popularmovies1.utils.NetworkUtils;
 
 import java.net.URL;
 import java.util.ArrayList;

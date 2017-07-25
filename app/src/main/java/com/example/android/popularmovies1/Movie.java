@@ -109,6 +109,8 @@ public class Movie implements Parcelable {
         dest.writeString(releaseDate);
     }
 
+
+
     @SuppressWarnings("unused")
     public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
         @Override

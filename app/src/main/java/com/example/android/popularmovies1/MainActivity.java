@@ -14,10 +14,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.android.popularmovies1.AsyncTask.AsyncTaskInterface;
-import com.example.android.popularmovies1.AsyncTask.MovieAsyncTask;
-import com.example.android.popularmovies1.Decoration.DividerItemDecoration;
-import com.example.android.popularmovies1.Decoration.VerticalSpacingDecoration;
+import com.example.android.popularmovies1.asynctask.AsyncTaskInterface;
+import com.example.android.popularmovies1.asynctask.MovieAsyncTask;
+import com.example.android.popularmovies1.decoration.DividerItemDecoration;
+import com.example.android.popularmovies1.decoration.VerticalSpacingDecoration;
 
 import java.util.ArrayList;
 
