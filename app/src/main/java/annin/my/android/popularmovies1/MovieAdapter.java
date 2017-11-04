@@ -1,4 +1,4 @@
-package com.example.android.popularmovies1;
+package annin.my.android.popularmovies1;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,6 +1,6 @@
-package com.example.android.popularmovies1.asynctask;
+package annin.my.android.popularmovies1.asynctask;
 
-import com.example.android.popularmovies1.Movie;
+import annin.my.android.popularmovies1.Movie;
 
 import java.util.ArrayList;
 

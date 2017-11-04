@@ -1,11 +1,11 @@
-package com.example.android.popularmovies1.utils;
+package annin.my.android.popularmovies1.utils;
 
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.android.popularmovies1.BuildConfig;
-import com.example.android.popularmovies1.Movie;
+import annin.my.android.popularmovies1.BuildConfig;
+import annin.my.android.popularmovies1.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;

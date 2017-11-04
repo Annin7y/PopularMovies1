@@ -1,4 +1,4 @@
-package com.example.android.popularmovies1;
+package annin.my.android.popularmovies1;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +14,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.android.popularmovies1.asynctask.AsyncTaskInterface;
-import com.example.android.popularmovies1.asynctask.MovieAsyncTask;
-import com.example.android.popularmovies1.decoration.DividerItemDecoration;
-import com.example.android.popularmovies1.decoration.VerticalSpacingDecoration;
+import annin.my.android.popularmovies1.asynctask.AsyncTaskInterface;
+import annin.my.android.popularmovies1.asynctask.MovieAsyncTask;
+import annin.my.android.popularmovies1.decoration.DividerItemDecoration;
+import annin.my.android.popularmovies1.decoration.VerticalSpacingDecoration;
 
 import java.util.ArrayList;
 

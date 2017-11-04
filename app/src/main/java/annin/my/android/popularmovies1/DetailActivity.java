@@ -1,8 +1,6 @@
-package com.example.android.popularmovies1;
+package annin.my.android.popularmovies1;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
