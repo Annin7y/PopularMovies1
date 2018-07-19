@@ -5,7 +5,7 @@ A project for the Android Developer Nanodegree @ Udacity
 Clone or download this repository. Import into Android Studio.
 
 ### **Description**
-Users will download a list of movies from a movie database. The movies will be sorted by most popular and top rated by clicking on the menu option. Main Activity displays movie images. Clicking on an image takes users to the Detail Activity where additional info, incl. reviews and trailer links are displayed. 
+The first part of the Popular Movies project. Users will download a list of movies from a movie database. The movies will be sorted by most popular and top rated by clicking on the menu option. Main Activity displays movie images. Clicking on an image takes users to the Detail Activity where additional info(description, release date, and rating) is displayed. More advanced features are available in Popular Movies 2.
 
 ### **Screenshots**
 ![screenshot_20180717-popmov1](https://user-images.githubusercontent.com/22602021/42973576-a036475e-8b81-11e8-99c8-a264c6533360.jpg)
