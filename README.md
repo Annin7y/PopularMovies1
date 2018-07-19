@@ -10,6 +10,8 @@ The first part of the Popular Movies project. Users will download a list of movi
 ### **Screenshots**
 ![screenshot_20180717-popmov1](https://user-images.githubusercontent.com/22602021/42973576-a036475e-8b81-11e8-99c8-a264c6533360.jpg)
 
+![screenshot_20180719-popmov1detail](https://user-images.githubusercontent.com/22602021/42973995-7dbfd080-8b83-11e8-88ac-f1ce90dad8f0.jpg)
+
 ### **License**
 Copyright A. Annin and Udacity 2017. This project is part of the Udacity Android Developer Nanodegree.
 The MIT License (MIT)
