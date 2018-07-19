@@ -4,11 +4,14 @@ A project for the Android Developer Nanodegree @ Udacity
 ### **Installation**
 Clone or download this repository. Import into Android Studio.
 
+### **Description**
+Users will download a list of movies from a movie database. The movies will be sorted by most popular and top rated by clicking on the menu option. Main Activity displays movie images. Clicking on an image takes users to the Detail Activity where additional info, incl. reviews and trailer links are displayed. 
+
 ### **Screenshots**
 ![screenshot_20180717-popmov1](https://user-images.githubusercontent.com/22602021/42973576-a036475e-8b81-11e8-99c8-a264c6533360.jpg)
 
 ### **License**
-Copyright A. Annin and Udacity 2017/2018. This project is part of the Udacity Android Developer Nanodegree.
+Copyright A. Annin and Udacity 2017. This project is part of the Udacity Android Developer Nanodegree.
 The MIT License (MIT)
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
