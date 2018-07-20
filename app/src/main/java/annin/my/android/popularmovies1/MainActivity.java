@@ -3,6 +3,8 @@ package annin.my.android.popularmovies1;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.android.popularmovies1.R;
 
 import annin.my.android.popularmovies1.asynctask.AsyncTaskInterface;
 import annin.my.android.popularmovies1.asynctask.MovieAsyncTask;
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private TextView mErrorMessageDisplay;
 
     private ProgressBar mLoadingIndicator;
+
+    CoordinatorLayout mCoordinatorLayout;
 
 
     @Override
@@ -75,15 +81,24 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     @Override
     public void returnData(ArrayList<Movie> simpleJsonMovieData) {
         mLoadingIndicator.setVisibility(View.INVISIBLE);
-        movieAdapter = new MovieAdapter(this, simpleJsonMovieData, MainActivity.this);
-        mRecyclerView.setAdapter(movieAdapter);
-    }
+        if (null != simpleJsonMovieData) {
+            movieAdapter = new MovieAdapter(this, simpleJsonMovieData, MainActivity.this);
+            mRecyclerView.setAdapter(movieAdapter);
+        }
+         else{
+                showErrorMessage();
+            }
+        }
 
     private void showErrorMessage() {
         /* First, hide the currently visible data */
         mRecyclerView.setVisibility(View.INVISIBLE);
         /* Then, show the error */
-        mErrorMessageDisplay.setVisibility(View.VISIBLE);
+       // mErrorMessageDisplay.setVisibility(View.VISIBLE);
+        Snackbar
+                .make(mCoordinatorLayout, "Please check your internet connection", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Retry", new MyClickListener())
+                .show();
     }
 
     @Override

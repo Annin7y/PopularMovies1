@@ -4,8 +4,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
-import annin.my.android.popularmovies1.BuildConfig;
-import annin.my.android.popularmovies1.Movie;
+import com.example.android.popularmovies1.BuildConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,6 +19,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+
+import annin.my.android.popularmovies1.Movie;
 
 /**
  * Created by Maino96-10022 on 6/20/2017.
