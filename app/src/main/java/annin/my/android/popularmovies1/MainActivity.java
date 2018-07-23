@@ -78,6 +78,17 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                         R.drawable.item_decorator)));
     }
 
+    public class MyClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            // Run the AsyncTask in response to the click
+            MovieAsyncTask myTask = new MovieAsyncTask(MainActivity.this);
+            myTask.execute ();
+        }
+    }
+
+
+
     @Override
     public void returnData(ArrayList<Movie> simpleJsonMovieData) {
         mLoadingIndicator.setVisibility(View.INVISIBLE);
