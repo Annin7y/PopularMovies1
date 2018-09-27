@@ -1,4 +1,4 @@
-package annin.my.android.popularmovies1;
+package annin.my.android.popularmovies1.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,8 +7,8 @@ import android.os.Parcelable;
  * Created by Maino96-10022 on 6/3/2017.
  */
 
-public class Movie implements Parcelable {
-
+public class Movie implements Parcelable
+{
     /**
      * Image URL
      */
@@ -39,7 +39,8 @@ public class Movie implements Parcelable {
      */
     private String releaseDate;
 
-    public Movie(String posterUrl, String originalTitle, String movieOverview, String voteAverage, String releaseDate) {
+    public Movie(String posterUrl, String originalTitle, String movieOverview, String voteAverage, String releaseDate)
+    {
         this.posterUrl = posterUrl;
         this.originalTitle = originalTitle;
         this.movieOverview = movieOverview;
@@ -47,47 +48,58 @@ public class Movie implements Parcelable {
         this.releaseDate = releaseDate;
     }
 
-    public String getPosterUrl() {
+    public String getPosterUrl()
+    {
         return BASE_POSTER_URL + posterUrl;
     }
 
-    public void setPosterUrl(String poster) {
+    public void setPosterUrl(String poster)
+    {
         this.posterUrl = poster;
     }
 
-    public String getOriginalTitle() {
+    public String getOriginalTitle()
+    {
         return originalTitle;
     }
 
-    public void setOriginalTitle(String originalTitle) {
+    public void setOriginalTitle(String originalTitle)
+    {
         this.originalTitle = originalTitle;
     }
 
-    public String getMovieOverview() {
+    public String getMovieOverview()
+    {
         return movieOverview;
     }
 
-    public void setMovieOverview(String movieOverview) {
+    public void setMovieOverview(String movieOverview)
+    {
         this.movieOverview = movieOverview;
     }
 
-    public String getVoteAverage() {
+    public String getVoteAverage()
+    {
         return voteAverage;
     }
 
-    public void setVoteAverage(String voteAverage) {
+    public void setVoteAverage(String voteAverage)
+    {
         this.voteAverage = voteAverage;
     }
 
-    public String getReleaseDate() {
+    public String getReleaseDate()
+    {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(String releaseDate)
+    {
         this.releaseDate = releaseDate;
     }
 
-    protected Movie(Parcel in) {
+    protected Movie(Parcel in)
+    {
         posterUrl = in.readString();
         originalTitle = in.readString();
         movieOverview = in.readString();
@@ -96,12 +108,14 @@ public class Movie implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
+    public int describeContents()
+    {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(Parcel dest, int flags)
+    {
         dest.writeString(posterUrl);
         dest.writeString(originalTitle);
         dest.writeString(movieOverview);
@@ -109,17 +123,18 @@ public class Movie implements Parcelable {
         dest.writeString(releaseDate);
     }
 
-
-
     @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>()
+    {
         @Override
-        public Movie createFromParcel(Parcel in) {
+        public Movie createFromParcel(Parcel in)
+        {
             return new Movie(in);
         }
 
         @Override
-        public Movie[] newArray(int size) {
+        public Movie[] newArray(int size)
+        {
             return new Movie[size];
         }
     };

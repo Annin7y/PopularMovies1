@@ -1,4 +1,4 @@
-package annin.my.android.popularmovies1;
+package annin.my.android.popularmovies1.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,14 +12,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DetailActivity extends AppCompatActivity {
+import annin.my.android.popularmovies1.model.Movie;
 
+public class DetailActivity extends AppCompatActivity
+{
     private static final String TAG = DetailActivity.class.getSimpleName();
 
     ImageView poster;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
@@ -27,7 +30,8 @@ public class DetailActivity extends AppCompatActivity {
         poster = (ImageView) findViewById(R.id.imageView);
 
         Movie movie;
-        if (getIntent() != null && getIntent().getExtras() != null) {
+        if (getIntent() != null && getIntent().getExtras() != null)
+        {
             movie = getIntent().getExtras().getParcelable("Movie");
             Picasso.with(this)
                         .load(movie.getPosterUrl())
@@ -48,13 +52,17 @@ public class DetailActivity extends AppCompatActivity {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = null;
 
-                try {
+                try
+                {
                     date = simpleDateFormat.parse(movie.getReleaseDate());
                     date.toString();
 
-                } catch (ParseException e) {
+                }
+                catch (ParseException e)
+                {
                     e.printStackTrace();
                 }
+
                 SimpleDateFormat newDateFormat = new SimpleDateFormat("MMM dd, yyyy");
                 String finalDate = newDateFormat.format(date);
 

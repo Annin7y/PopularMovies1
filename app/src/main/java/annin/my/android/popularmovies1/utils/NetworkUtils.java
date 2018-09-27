@@ -20,52 +20,47 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import annin.my.android.popularmovies1.Movie;
+import annin.my.android.popularmovies1.model.Movie;
 
 /**
  * Created by Maino96-10022 on 6/20/2017.
  */
 
-public class NetworkUtils {
+public class NetworkUtils
+{
     /**
      * Tag for the log messages
      */
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     private static final String KEY_POSTER_PATH = "poster_path";
-
     private static final String KEY_ORIGINAL_TITLE = "original_title";
-
     private static final String KEY_OVERVIEW = "overview";
-
     private static final String KEY_VOTE_AVERAGE = "vote_average";
-
     private static final String KEY_RELEASE_DATE = "release_date";
-
+    private static final String API_KEY = "api_key";
+    private static final String BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular";
+    private static final String BASE_URL_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated";
     public static final String SORT_BY_POPULAR = "most_popular";
-
     public static final String SORT_BY_RATING = "top_rated";
 
-    private static final String API_KEY = "api_key";
-
-    private static final String BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular";
-
-    private static final String BASE_URL_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated";
-
-
-    public NetworkUtils() {
+    public NetworkUtils()
+    {
     }
 
-    private static ArrayList<Movie> fetchMoviesData(String requestUrl) {
-
+    private static ArrayList<Movie> fetchMoviesData(String requestUrl)
+    {
         // Create a URL object
         URL url = buildUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
-        try {
+        try
+        {
             jsonResponse = makeHttpRequest(url);
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
@@ -81,22 +76,29 @@ public class NetworkUtils {
      * @param sortMode
      * @return either most popular or top rated movies
      */
-    public static URL buildUrl(String sortMode) {
+    public static URL buildUrl(String sortMode)
+    {
         URL url = null;
-        try {
-            if (sortMode.equals(SORT_BY_POPULAR)) {
+        try
+        {
+            if (sortMode.equals(SORT_BY_POPULAR))
+            {
                 Uri builtUri = Uri.parse(BASE_URL_POPULAR).buildUpon()
                         .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIES_API_KEY)
                         .build();
                 url = new URL(builtUri.toString());
-            } else if (sortMode.equals(SORT_BY_RATING)) {
+            }
+            else if (sortMode.equals(SORT_BY_RATING))
+            {
                 Uri builtUri = Uri.parse(BASE_URL_TOP_RATED).buildUpon()
                         .appendQueryParameter(API_KEY, BuildConfig.OPEN_MOVIES_API_KEY)
                         .build();
                 url = new URL(builtUri.toString());
             }
 
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e)
+        {
             e.printStackTrace();
         }
         return url;
@@ -106,17 +108,20 @@ public class NetworkUtils {
      * Make an HTTP request to the given URL and return a String as the response.
      */
 
-    public static String makeHttpRequest(URL url) throws IOException {
+    public static String makeHttpRequest(URL url) throws IOException
+    {
         String jsonResponse = "";
         Log.i("URL: ", url.toString());
         // If the URL is null, then return early.
-        if (url == null) {
+        if (url == null)
+        {
             return jsonResponse;
         }
 
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
-        try {
+        try
+        {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
@@ -125,19 +130,28 @@ public class NetworkUtils {
 
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == 200)
+            {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
-            } else {
+            }
+            else
+                {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             Log.e(LOG_TAG, "Problem retrieving movie JSON results.", e);
-        } finally {
-            if (urlConnection != null) {
+        }
+        finally
+        {
+            if (urlConnection != null)
+            {
                 urlConnection.disconnect();
             }
-            if (inputStream != null) {
+            if (inputStream != null)
+            {
                 // Closing the input stream could throw an IOException, which is why
                 // the makeHttpRequest(URL url) method signature specifies than an IOException
                 // could be thrown.
@@ -151,13 +165,16 @@ public class NetworkUtils {
      * Convert the {@link InputStream} into a String which contains the
      * whole JSON response from the server.
      */
-    private static String readFromStream(InputStream inputStream) throws IOException {
+    private static String readFromStream(InputStream inputStream) throws IOException
+    {
         StringBuilder output = new StringBuilder();
-        if (inputStream != null) {
+        if (inputStream != null)
+        {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
             BufferedReader reader = new BufferedReader(inputStreamReader);
             String line = reader.readLine();
-            while (line != null) {
+            while (line != null)
+            {
                 output.append(line);
                 line = reader.readLine();
             }
@@ -165,14 +182,16 @@ public class NetworkUtils {
         return output.toString();
     }
 
-    public static ArrayList<Movie> extractFeatureFromJson(String movieJSON) {
+    public static ArrayList<Movie> extractFeatureFromJson(String movieJSON)
+    {
         // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(movieJSON)) {
+        if (TextUtils.isEmpty(movieJSON))
+        {
             return null;
         }
         ArrayList<Movie> movies = new ArrayList<>();
-        try {
-
+        try
+        {
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(movieJSON);
 
@@ -181,8 +200,8 @@ public class NetworkUtils {
             JSONArray movieArray = baseJsonResponse.getJSONArray("results");
 
 // For each earthquake in the earthquakeArray, create an {@link Movie} object
-            for (int i = 0; i < movieArray.length(); i++) {
-
+            for (int i = 0; i < movieArray.length(); i++)
+            {
                 // Get a single movie description at position i within the list of movies
                 JSONObject currentMovie = movieArray.getJSONObject(i);
 
@@ -199,10 +218,10 @@ public class NetworkUtils {
 
                 Movie movie = new Movie(posterName, movieName, overviewName, voteName, releaseDate);
                 movies.add(movie);
-
             }
-
-        } catch (JSONException e) {
+        }
+        catch (JSONException e)
+        {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.

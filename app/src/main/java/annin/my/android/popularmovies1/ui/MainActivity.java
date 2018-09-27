@@ -1,4 +1,4 @@
-package annin.my.android.popularmovies1;
+package annin.my.android.popularmovies1.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.example.android.popularmovies1.R;
 
+import annin.my.android.popularmovies1.model.Movie;
+import annin.my.android.popularmovies1.adapters.MovieAdapter;
 import annin.my.android.popularmovies1.asynctask.AsyncTaskInterface;
 import annin.my.android.popularmovies1.asynctask.MovieAsyncTask;
 import annin.my.android.popularmovies1.decoration.DividerItemDecoration;
@@ -25,29 +27,23 @@ import annin.my.android.popularmovies1.decoration.VerticalSpacingDecoration;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler, AsyncTaskInterface {
+public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler, AsyncTaskInterface
+{
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private ArrayList<Movie> simpleJsonMovieData = new ArrayList<>();
-
     private Context context;
-
     private RecyclerView mRecyclerView;
-
     private MovieAdapter movieAdapter;
-
+    private TextView mErrorMessageDisplay;
+    private ProgressBar mLoadingIndicator;
+    CoordinatorLayout mCoordinatorLayout;
     RecyclerView.LayoutManager mLayoutManager;
 
-    private TextView mErrorMessageDisplay;
-
-    private ProgressBar mLoadingIndicator;
-
-    CoordinatorLayout mCoordinatorLayout;
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -65,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         /**
          *  Starting the asyncTask so that movies load upon launching the app. most popular are loaded first.
          */
-
         MovieAsyncTask myTask = new MovieAsyncTask(this);
         myTask.execute("most_popular");
 
@@ -78,30 +73,34 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                         R.drawable.item_decorator)));
     }
 
-    public class MyClickListener implements View.OnClickListener {
+    public class MyClickListener implements View.OnClickListener
+    {
         @Override
-        public void onClick(View v) {
+        public void onClick(View v)
+        {
             // Run the AsyncTask in response to the click
             MovieAsyncTask myTask = new MovieAsyncTask(MainActivity.this);
-            myTask.execute ();
+            myTask.execute();
         }
     }
 
-
-
     @Override
-    public void returnData(ArrayList<Movie> simpleJsonMovieData) {
+    public void returnData(ArrayList<Movie> simpleJsonMovieData)
+    {
         mLoadingIndicator.setVisibility(View.INVISIBLE);
-        if (null != simpleJsonMovieData) {
+        if (null != simpleJsonMovieData)
+        {
             movieAdapter = new MovieAdapter(this, simpleJsonMovieData, MainActivity.this);
             mRecyclerView.setAdapter(movieAdapter);
         }
-         else{
+         else
+             {
                 showErrorMessage();
-            }
+             }
         }
 
-    private void showErrorMessage() {
+    private void showErrorMessage()
+    {
         /* First, hide the currently visible data */
         mRecyclerView.setVisibility(View.INVISIBLE);
         /* Then, show the error */
@@ -113,14 +112,16 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
     @Override
-    public void onClick(Movie movie) {
+    public void onClick(Movie movie)
+    {
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
         intent.putExtra("Movie", movie);
         startActivity(intent);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
         MenuInflater inflater = getMenuInflater();
         /* Use the inflater's inflate method to inflate our menu layout to this menu */
@@ -130,9 +131,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         MovieAsyncTask myTask = new MovieAsyncTask(this);
-        switch (item.getItemId()) {
+        switch (item.getItemId())
+        {
             case R.id.most_popular:
                 myTask.execute("most_popular");
                 returnData(simpleJsonMovieData);

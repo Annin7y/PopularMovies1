@@ -2,7 +2,7 @@ package annin.my.android.popularmovies1.asynctask;
 
 import android.os.AsyncTask;
 
-import annin.my.android.popularmovies1.Movie;
+import annin.my.android.popularmovies1.model.Movie;
 import annin.my.android.popularmovies1.utils.NetworkUtils;
 
 import java.net.URL;
@@ -12,30 +12,34 @@ import java.util.ArrayList;
  * Created by Maino96-10022 on 6/8/2017.
  */
 
-public class MovieAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>> {
-
+public class MovieAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>>
+{
     private static final String TAG = MovieAsyncTask.class.getSimpleName();
+
     private AsyncTaskInterface listener;
 
-    public MovieAsyncTask(AsyncTaskInterface listener) {
+    public MovieAsyncTask(AsyncTaskInterface listener)
+    {
         this.listener = listener;
     }
 
     @Override
-    protected void onPreExecute() {
+    protected void onPreExecute()
+    {
         super.onPreExecute();
     }
 
     @Override
-    protected ArrayList<Movie> doInBackground(String... params) {
-
+    protected ArrayList<Movie> doInBackground(String... params)
+    {
         if (params.length == 0) {
             return null;
         }
         String sortMode = params[0];
         URL movieRequestUrl = NetworkUtils.buildUrl(sortMode);
 
-        try {
+        try
+        {
             String jsonMovieResponse = NetworkUtils
                     .makeHttpRequest(movieRequestUrl);
 
@@ -44,16 +48,20 @@ public class MovieAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>> {
 
             return simpleJsonMovieData;
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             return null;
         }
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Movie> mMovieList) {
+    protected void onPostExecute(ArrayList<Movie> mMovieList)
+    {
         super.onPostExecute(mMovieList);
-        if (mMovieList != null) {
+        if (mMovieList != null)
+        {
             listener.returnData(mMovieList);
         }
     }
