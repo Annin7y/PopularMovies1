@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class MovieAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>>
 {
-    private static final String TAG = MovieAsyncTask.class.getSimpleName();
+    private static final String LOG_TAG = MovieAsyncTask.class.getSimpleName();
 
     private AsyncTaskInterface listener;
 
@@ -32,7 +32,8 @@ public class MovieAsyncTask extends AsyncTask<String, Void, ArrayList<Movie>>
     @Override
     protected ArrayList<Movie> doInBackground(String... params)
     {
-        if (params.length == 0) {
+        if (params.length == 0)
+        {
             return null;
         }
         String sortMode = params[0];

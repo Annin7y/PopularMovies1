@@ -29,8 +29,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler, AsyncTaskInterface
 {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
+    /**
+     * Tag for the log messages
+     */
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private ArrayList<Movie> simpleJsonMovieData = new ArrayList<>();
     private Context context;

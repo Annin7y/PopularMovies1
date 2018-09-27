@@ -16,7 +16,10 @@ import annin.my.android.popularmovies1.model.Movie;
 
 public class DetailActivity extends AppCompatActivity
 {
-    private static final String TAG = DetailActivity.class.getSimpleName();
+    /**
+     * Tag for the log messages
+     */
+    private static final String LOG_TAG = DetailActivity.class.getSimpleName();
 
     ImageView poster;
 
@@ -56,7 +59,6 @@ public class DetailActivity extends AppCompatActivity
                 {
                     date = simpleDateFormat.parse(movie.getReleaseDate());
                     date.toString();
-
                 }
                 catch (ParseException e)
                 {

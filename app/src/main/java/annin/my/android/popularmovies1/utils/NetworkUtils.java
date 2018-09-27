@@ -33,6 +33,7 @@ public class NetworkUtils
      */
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
+    //keys used when parsing JSON
     private static final String KEY_POSTER_PATH = "poster_path";
     private static final String KEY_ORIGINAL_TITLE = "original_title";
     private static final String KEY_OVERVIEW = "overview";
@@ -41,6 +42,8 @@ public class NetworkUtils
     private static final String API_KEY = "api_key";
     private static final String BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular";
     private static final String BASE_URL_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated";
+
+    //keys used when building a URL
     public static final String SORT_BY_POPULAR = "most_popular";
     public static final String SORT_BY_RATING = "top_rated";
 
