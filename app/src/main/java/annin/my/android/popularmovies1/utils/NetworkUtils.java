@@ -20,7 +20,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import annin.my.android.popularmovies1.model.Movie;
+import annin.my.android.popularmovies1.pojo.Movie;
 
 /**
  * Created by Maino96-10022 on 6/20/2017.

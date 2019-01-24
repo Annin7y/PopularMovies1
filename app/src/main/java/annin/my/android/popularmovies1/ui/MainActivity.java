@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.example.android.popularmovies1.R;
 
-import annin.my.android.popularmovies1.model.Movie;
+import annin.my.android.popularmovies1.pojo.Movie;
 import annin.my.android.popularmovies1.adapters.MovieAdapter;
 import annin.my.android.popularmovies1.asynctask.AsyncTaskInterface;
 import annin.my.android.popularmovies1.asynctask.MovieAsyncTask;

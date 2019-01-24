@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import annin.my.android.popularmovies1.model.Movie;
+import annin.my.android.popularmovies1.pojo.Movie;
 
 public class DetailActivity extends AppCompatActivity
 {

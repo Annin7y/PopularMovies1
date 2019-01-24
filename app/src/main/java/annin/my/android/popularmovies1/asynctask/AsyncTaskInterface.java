@@ -1,6 +1,6 @@
 package annin.my.android.popularmovies1.asynctask;
 
-import annin.my.android.popularmovies1.model.Movie;
+import annin.my.android.popularmovies1.pojo.Movie;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,7 @@ package annin.my.android.popularmovies1.asynctask;
 
 import android.os.AsyncTask;
 
-import annin.my.android.popularmovies1.model.Movie;
+import annin.my.android.popularmovies1.pojo.Movie;
 import annin.my.android.popularmovies1.utils.NetworkUtils;
 
 import java.net.URL;
